@@ -40,3 +40,9 @@ node_modules/
 *.tmp
 *.temp
 .vercel
+
+# Personal files - do not commit
+*resume*
+*Resume*
+*.docx
+assets/downloads/
