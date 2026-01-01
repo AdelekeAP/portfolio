@@ -1,18 +1,4 @@
-    <!-- Floating Particles -->
-    <div class="floating-particles">
-        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
-        <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
-        <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
-        <div class="particle" style="left: 40%; animation-delay: 3s;"></div>
-        <div class="particle" style="left: 50%; animation-delay: 4s;"></div>
-        <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
-        <div class="particle" style="left: 70%; animation-delay: 0.5s;"></div>
-        <div class="particle" style="left: 80%; animation-delay: 1.5s;"></div>
-        <div class="particle" style="left: 90%; animation-delay: 2.5s;"></div>
-    </div>
-
-    <!-- Custom Cursor -->
-    <div class<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -41,1708 +27,347 @@
     <meta property="twitter:description" content="Computer Science undergraduate crafting digital experiences at the intersection of tech innovation and cultural authenticity.">
     <meta property="twitter:image" content="https://paulaladenusi.com/assets/images/og-image.png">
 
-    <!-- Favicon (Add your favicon files to assets/images/) -->
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
 
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            color: #2d3748;
-            background: #fafafa;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(250, 250, 250, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1a202c;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #4a5568;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: #4a5568;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #4a5568;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, #fafafa 0%, #f7fafc 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 60%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23e2e8f0" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 8vw, 5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #1a202c 0%, #4a5568 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero .nickname {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            color: #4a5568;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero .tagline {
-            font-size: 1.25rem;
-            color: #718096;
-            max-width: 600px;
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: #1a202c;
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(26, 32, 44, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            background: #2d3748;
-            box-shadow: 0 8px 25px rgba(26, 32, 44, 0.4);
-        }
-
-        /* Sections */
-        section {
-            padding: 6rem 0;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: #1a202c;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: #718096;
-            max-width: 600px;
-            margin: 0 auto 4rem;
-            font-size: 1.1rem;
-        }
-
-        /* About Section */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-image {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, #4a5568 0%, #718096 100%);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 4rem;
-            font-weight: 700;
-        }
-
-        .about-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #1a202c;
-        }
-
-        .about-content p {
-            margin-bottom: 1.5rem;
-            color: #4a5568;
-            line-height: 1.8;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .stat {
-            text-align: center;
-            padding: 1.5rem;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1a202c;
-            display: block;
-        }
-
-        .stat-label {
-            color: #718096;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-        }
-
-        /* Projects Section */
-        .projects {
-            background: white;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: #fafafa;
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid #e2e8f0;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-
-        .project-image {
-            height: 200px;
-            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #1a202c;
-            font-size: 1.5rem;
-            font-weight: 600;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .project-content {
-            padding: 2rem;
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #1a202c;
-        }
-
-        .project-description {
-            color: #4a5568;
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-tag {
-            background: #1a202c;
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .project-link {
-            color: #1a202c;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .project-link:hover {
-            color: #4a5568;
-        }
-
-        /* Experience Section */
-        .experience-timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .experience-timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: #e2e8f0;
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            width: 45%;
-        }
-
-        .timeline-item:nth-child(odd) {
-            left: 0;
-        }
-
-        .timeline-item:nth-child(even) {
-            left: 55%;
-        }
-
-        .timeline-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            position: relative;
-        }
-
-        .timeline-content::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 15px;
-            height: 15px;
-            background: #1a202c;
-            border: 3px solid white;
-            border-radius: 50%;
-            transform: translateY(-50%);
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content::before {
-            right: -30px;
-        }
-
-        .timeline-item:nth-child(even) .timeline-content::before {
-            left: -30px;
-        }
-
-        .timeline-date {
-            color: #1a202c;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: #1a202c;
-        }
-
-        .timeline-company {
-            color: #4a5568;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .timeline-description {
-            color: #718096;
-            line-height: 1.7;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: #1a202c;
-            color: white;
-        }
-
-        .contact .section-title {
-            color: white;
-        }
-
-        .contact .section-subtitle {
-            color: #a0aec0;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 2rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: none;
-            border-radius: 10px;
-            background: #2d3748;
-            color: white;
-            font-size: 1rem;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: 2px solid #4a5568;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .social-link {
-            width: 60px;
-            height: 60px;
-            background: #2d3748;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            background: #4a5568;
-            transform: translateY(-3px);
-        }
-
-        /* Mobile Menu Toggle */
-        .mobile-menu-toggle {
-            display: none;
-            flex-direction: column;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .hamburger-line {
-            width: 25px;
-            height: 3px;
-            background: #1a202c;
-            margin: 3px 0;
-            transition: all 0.3s ease;
-            border-radius: 2px;
-        }
-
-        .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-
-        .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .mobile-menu-toggle {
-                display: flex;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                right: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: rgba(250, 250, 250, 0.98);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 3rem;
-                transition: right 0.3s ease;
-                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-links li {
-                font-size: 1.5rem;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .stats {
-                grid-template-columns: 1fr;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline-item,
-            .timeline-item:nth-child(even) {
-                width: 100%;
-                left: 0;
-            }
-
-            .experience-timeline::before {
-                left: 20px;
-            }
-
-            .timeline-content::before,
-            .timeline-item:nth-child(even) .timeline-content::before {
-                left: -30px;
-            }
-
-            .social-links {
-                flex-wrap: wrap;
-                gap: 1rem;
-            }
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Custom Cursor */
-        body {
-            cursor: none;
-        }
-
-        .cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #1a202c;
-            pointer-events: none;
-            z-index: 9999;
-            transition: all 0.05s ease;
-            mix-blend-mode: difference;
-        }
-
-        .cursor-follower {
-            position: fixed;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid rgba(26, 32, 44, 0.3);
-            pointer-events: none;
-            z-index: 9998;
-            transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .cursor.hover {
-            transform: scale(2);
-            background: #4a5568;
-        }
-
-        .cursor-follower.hover {
-            transform: scale(1.5);
-            border-color: rgba(74, 85, 104, 0.8);
-        }
-
-        .cursor.text-hover {
-            width: 80px;
-            height: 80px;
-            background: rgba(26, 32, 44, 0.1);
-            border: 2px solid #1a202c;
-        }
-
-        .cursor.click {
-            transform: scale(0.8);
-            background: #2d3748;
-        }
-
-        .cursor-trail {
-            position: fixed;
-            width: 4px;
-            height: 4px;
-            background: #1a202c;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9997;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        /* Interactive elements */
-        .skill-bubble {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: white;
-            border: 2px solid #e2e8f0;
-            border-radius: 25px;
-            margin: 0.25rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-bubble::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(26, 32, 44, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .skill-bubble:hover::before {
-            left: 100%;
-        }
-
-        .skill-bubble:hover {
-            background: #1a202c;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Code-like typing animation */
-        .typing-text {
-            font-family: 'Monaco', 'Courier New', monospace;
-            border-right: 2px solid #1a202c;
-            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
-            white-space: nowrap;
-            overflow: hidden;
-        }
-
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #1a202c }
-        }
-
-        /* Interactive project cards with tilt */
-        .project-card {
-            background: #fafafa;
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid #e2e8f0;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-        }
-
-
-
-        /* Terminal-like text areas */
-        .terminal {
-            background: #1a202c;
-            color: #4ade80;
-            padding: 1rem;
-            border-radius: 10px;
-            font-family: 'Monaco', 'Courier New', monospace;
-            font-size: 0.9rem;
-            margin: 1rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .terminal::before {
-            content: '> ';
-            color: #4ade80;
-        }
-
-        .terminal-cursor {
-            display: inline-block;
-            background: #4ade80;
-            animation: terminal-blink 1s infinite;
-        }
-
-        @keyframes terminal-blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        /* Magnetic buttons */
-        .magnetic {
-            transition: transform 0.1s ease;
-        }
-        .floating-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(26, 32, 44, 0.1);
-            border-radius: 50%;
-            animation: float 6s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        /* Parallax effect */
-        .parallax-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 120%;
-            height: 120%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23e2e8f0"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
-            opacity: 0.3;
-            animation: parallaxFloat 20s infinite ease-in-out;
-        }
-
-        @keyframes parallaxFloat {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(-10px, -10px) rotate(1deg); }
-            50% { transform: translate(10px, -20px) rotate(-1deg); }
-            75% { transform: translate(-5px, 10px) rotate(0.5deg); }
-        }
-
-        /* Loading animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="container">
-            <div class="nav-container">
-                <div class="logo">Leke</div>
-                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                </button>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="parallax-bg"></div>
-        <div class="container">
-            <div class="hero-content fade-in">
-                <h1>Paul Adeleke Aladenusi</h1>
-                <div class="nickname">(Leke)</div>
-                <p class="tagline">Computer Science undergraduate crafting digital experiences at the intersection of tech innovation and cultural authenticity. Building the future, one elegant solution at a time.</p>
-                <div style="margin: 2rem 0;">
-                    <a href="#projects" class="cta-button magnetic" style="margin-right: 1rem;">View My Work</a>
-                    <a href="mailto:aladenusiadeleke@gmail.com?subject=Resume Request&body=Hi Leke, I'd like to request your resume. Thanks!" class="cta-button magnetic" style="background: transparent; color: #1a202c; border: 2px solid #1a202c;">Request Resume</a>
+    <!-- Header with Navigation -->
+    <header>
+        <nav id="navbar">
+            <div class="container">
+                <div class="nav-container">
+                    <div class="logo">Leke</div>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+                    <ul class="nav-links" id="navLinks">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
                 </div>
             </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="parallax-bg"></div>
+            <div class="container">
+                <div class="hero-content fade-in">
+                    <h1>Paul Adeleke Aladenusi</h1>
+                    <div class="nickname">(Leke)</div>
+                    <p class="tagline">Computer Science undergraduate crafting digital experiences at the intersection of tech innovation and cultural authenticity. Building the future, one elegant solution at a time.</p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="cta-button magnetic">View My Work</a>
+                        <a href="mailto:aladenusiadeleke@gmail.com?subject=Resume Request&body=Hi Leke, I'd like to request your resume. Thanks!" class="cta-button cta-button-outline magnetic">Request Resume</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Custom Cursor -->
+        <div class="cursor"></div>
+        <div class="cursor-follower"></div>
+
+        <!-- Cursor Trails -->
+        <div class="cursor-trail" id="trail-1"></div>
+        <div class="cursor-trail" id="trail-2"></div>
+        <div class="cursor-trail" id="trail-3"></div>
+        <div class="cursor-trail" id="trail-4"></div>
+        <div class="cursor-trail" id="trail-5"></div>
+
+        <!-- Floating Particles -->
+        <div class="floating-particles">
+            <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+            <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
+            <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+            <div class="particle" style="left: 40%; animation-delay: 3s;"></div>
+            <div class="particle" style="left: 50%; animation-delay: 4s;"></div>
+            <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+            <div class="particle" style="left: 70%; animation-delay: 0.5s;"></div>
+            <div class="particle" style="left: 80%; animation-delay: 1.5s;"></div>
+            <div class="particle" style="left: 90%; animation-delay: 2.5s;"></div>
         </div>
-    </section>
 
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <div class="fade-in">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-subtitle">Passionate about technology, driven by creativity, and deeply rooted in culture</p>
 
-    <!-- Cursor Trails -->
-    <div class="cursor-trail" id="trail-1"></div>
-    <div class="cursor-trail" id="trail-2"></div>
-    <div class="cursor-trail" id="trail-3"></div>
-    <div class="cursor-trail" id="trail-4"></div>
-    <div class="cursor-trail" id="trail-5"></div>
+                    <div class="about-grid">
+                        <div class="about-image">LA</div>
+                        <div class="about-content">
+                            <h3>Tech Enthusiast & Cultural Creator</h3>
+                            <p>I'm a high-performing Computer Science undergraduate at Pan-Atlantic University, Nigeria, graduating December 2026 with a consistent First-Class GPA (4.75/5.0). My journey spans from risk consulting at EY to building entrepreneurial ventures that serve real community needs. Recently won TIC Hackathon 2.0 with two AI-powered solutions built in under 24 hours: EchoMind (Healthcare) and EchoPay (Fintech).</p>
 
-    <!-- Floating Particles -->
-    <div class="floating-particles">
-        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
-        <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
-        <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
-        <div class="particle" style="left: 40%; animation-delay: 3s;"></div>
-        <div class="particle" style="left: 50%; animation-delay: 4s;"></div>
-        <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
-        <div class="particle" style="left: 70%; animation-delay: 0.5s;"></div>
-        <div class="particle" style="left: 80%; animation-delay: 1.5s;"></div>
-        <div class="particle" style="left: 90%; animation-delay: 2.5s;"></div>
-    </div>
+                            <p>What sets me apart is my ability to bridge technical excellence with cultural authenticity. I thrive in creating solutions that don't just work, they resonate. Whether it's developing secure backend APIs, designing intuitive user experiences, integrating AI/ML capabilities, or building production-ready products under intense time pressure, I approach every project with a minimalist yet impactful philosophy.</p>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="fade-in">
-                <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">Passionate about technology, driven by creativity, and deeply rooted in culture</p>
-                
-                <div class="about-grid">
-                    <div class="about-image">LA</div>
-                    <div class="about-content">
-                        <h3>Tech Enthusiast & Cultural Creator</h3>
-                        <p>I'm a high-performing Computer Science undergraduate at Pan-Atlantic University, Nigeria, graduating December 2026 with a consistent First-Class GPA (4.75/5.0). My journey spans from risk consulting at EY to building entrepreneurial ventures that serve real community needs. Recently won TIC Hackathon 2.0 with two AI-powered solutions built in under 24 hours: EchoMind (Healthcare) and EchoPay (Fintech).</p>
+                            <div class="terminal">
+                                const leke = { skills: ["JavaScript", "Python", "React", "Problem Solving"], passion: "Building meaningful tech" };<span class="terminal-cursor">|</span>
+                            </div>
 
-                        <p>What sets me apart is my ability to bridge technical excellence with cultural authenticity. I thrive in creating solutions that don't just work, they resonate. Whether it's developing secure backend APIs, designing intuitive user experiences, integrating AI/ML capabilities, or building production-ready products under intense time pressure, I approach every project with a minimalist yet impactful philosophy.</p>
-                        
-                        <div class="terminal">
-                            const leke = { skills: ["JavaScript", "Python", "React", "Problem Solving"], passion: "Building meaningful tech" };<span class="terminal-cursor">|</span>
-                        </div>
-                        
-                        
-                        <div style="margin-top: 2rem;">
-                            <h4 style="margin-bottom: 1rem; color: #1a202c;">Core Technologies</h4>
-                            <div>
-                                <span class="skill-bubble">JavaScript</span>
-                                <span class="skill-bubble">Python</span>
-                                <span class="skill-bubble">React</span>
-                                <span class="skill-bubble">TypeScript</span>
-                                <span class="skill-bubble">NestJS</span>
-                                <span class="skill-bubble">Docker</span>
-                                <span class="skill-bubble">Firebase</span>
-                                <span class="skill-bubble">Git</span>
+                            <div class="skills-section">
+                                <h4>Core Technologies</h4>
+                                <div class="skills-container">
+                                    <span class="skill-bubble">JavaScript</span>
+                                    <span class="skill-bubble">Python</span>
+                                    <span class="skill-bubble">React</span>
+                                    <span class="skill-bubble">TypeScript</span>
+                                    <span class="skill-bubble">NestJS</span>
+                                    <span class="skill-bubble">Docker</span>
+                                    <span class="skill-bubble">Firebase</span>
+                                    <span class="skill-bubble">Git</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="stats">
-                    <div class="stat">
-                        <span class="stat-number">4.75/5.0</span>
-                        <div class="stat-label">First Class GPA</div>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">1000+</span>
-                        <div class="stat-label">Students Served</div>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">🏆 Winner</span>
-                        <div class="stat-label">TIC Hackathon 2.0</div>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">700+</span>
-                        <div class="stat-label">AI Assistant Users</div>
+                    <div class="stats">
+                        <div class="stat">
+                            <span class="stat-number">4.75/5.0</span>
+                            <div class="stat-label">First Class GPA</div>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">1000+</span>
+                            <div class="stat-label">Students Served</div>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">Winner</span>
+                            <div class="stat-label">TIC Hackathon 2.0</div>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">700+</span>
+                            <div class="stat-label">AI Assistant Users</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <div class="fade-in">
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="section-subtitle">Showcasing solutions that blend technical precision with user-centered design</p>
-                
-                <div class="projects-grid">
-                    <a href="https://uniordering.com" target="_blank" style="text-decoration: none; color: inherit;">
-                        <div class="project-card">
-                            <div class="project-image">🍕 Uni Ordering</div>
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <div class="fade-in">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">Showcasing solutions that blend technical precision with user-centered design</p>
+
+                    <div class="projects-grid">
+                        <a href="https://uniordering.com" target="_blank" class="project-card-link">
+                            <article class="project-card">
+                                <div class="project-image">Uni Ordering</div>
+                                <div class="project-content">
+                                    <h3 class="project-title">Uni Ordering Platform</h3>
+                                    <p class="project-description">A comprehensive food-ordering platform serving 1,000+ university students, handling 30-40 daily orders. Led frontend development with responsive UI, boosting adoption and order efficiency.</p>
+                                    <div class="tech-stack">
+                                        <span class="tech-tag">HTML5</span>
+                                        <span class="tech-tag">Tailwind CSS</span>
+                                        <span class="tech-tag">JavaScript</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <span class="project-link">Visit Live Platform</span>
+                                    </div>
+                                </div>
+                            </article>
+                        </a>
+
+                        <article class="project-card" onclick="showAIDemo()">
+                            <div class="project-image">PAU AI Assistant</div>
                             <div class="project-content">
-                                <h3 class="project-title">Uni Ordering Platform</h3>
-                                <p class="project-description">A comprehensive food-ordering platform serving 1,000+ university students, handling 30-40 daily orders. Led frontend development with responsive UI, boosting adoption and order efficiency.</p>
+                                <h3 class="project-title">PAU Knowledge Assistant</h3>
+                                <p class="project-description">AI-powered assistant built with Microsoft Copilot Studio that provides 700+ students and staff instant access to policies, HR guidelines, and academic procedures. Designed and structured comprehensive knowledge base.</p>
                                 <div class="tech-stack">
-                                    <span class="tech-tag">HTML5</span>
-                                    <span class="tech-tag">Tailwind CSS</span>
-                                    <span class="tech-tag">JavaScript</span>
+                                    <span class="tech-tag">Microsoft Copilot</span>
+                                    <span class="tech-tag">Markdown</span>
+                                    <span class="tech-tag">Knowledge Base</span>
+                                    <span class="tech-tag">AI Integration</span>
                                 </div>
                                 <div class="project-links">
-                                    <span class="project-link">Visit Live Platform →</span>
+                                    <span class="project-link">View Demo</span>
                                 </div>
+                                <p class="project-note">*Available exclusively for Pan-Atlantic University students and staff</p>
                             </div>
-                        </div>
-                    </a>
+                        </article>
 
-                    <div class="project-card" onclick="showAIDemo()" style="cursor: pointer;">
-                        <div class="project-image">🤖 PAU AI Assistant</div>
-                        <div class="project-content">
-                            <h3 class="project-title">PAU Knowledge Assistant</h3>
-                            <p class="project-description">AI-powered assistant built with Microsoft Copilot Studio that provides 700+ students and staff instant access to policies, HR guidelines, and academic procedures. Designed and structured comprehensive knowledge base.</p>
-                            <div class="tech-stack">
-                                <span class="tech-tag">Microsoft Copilot</span>
-                                <span class="tech-tag">Markdown</span>
-                                <span class="tech-tag">Knowledge Base</span>
-                                <span class="tech-tag">AI Integration</span>
-                            </div>
-                            <div class="project-links">
-                                <span class="project-link">View Demo →</span>
-                            </div>
-                            <p style="color: #718096; font-size: 0.85rem; margin-top: 1rem; font-style: italic;">*Available exclusively for Pan-Atlantic University students and staff</p>
-                        </div>
-                    </div>
-
-                    <div class="project-card" onclick="showEagleInfo()" style="cursor: pointer;">
-                        <div class="project-image">🚢 Eagle Vessel Tracker</div>
-                        <div class="project-content">
-                            <h3 class="project-title">Eagle - Vessel Tracking System</h3>
-                            <p class="project-description">Vessel-tracking solution for Keystone Bank Nigeria to monitor bank-owned vessels, integrating AIS data. Designed database schema for ship information, routes, and live tracking for risk assessment.</p>
-                            <div class="tech-stack">
-                                <span class="tech-tag">Database Design</span>
-                                <span class="tech-tag">API Integration</span>
-                                <span class="tech-tag">AIS Data</span>
-                                <span class="tech-tag">Risk Management</span>
-                            </div>
-                            <div class="project-links">
-                                <span class="project-link">View Case Study →</span>
-                            </div>
-                            <p style="color: #718096; font-size: 0.85rem; margin-top: 1rem; font-style: italic;">*Internal banking tool - Code repository not publicly available</p>
-                        </div>
-                    </div>
-
-                    <a href="project-echomind.html" style="text-decoration: none; color: inherit;">
-                        <div class="project-card" style="border: 2px solid #4a5568;">
-                            <div class="project-image" style="background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%); color: white;">🏥 EchoMind</div>
+                        <article class="project-card" onclick="showEagleInfo()">
+                            <div class="project-image">Eagle Vessel Tracker</div>
                             <div class="project-content">
-                                <div style="background: #4a5568; color: white; padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.75rem; font-weight: 600; display: inline-block; margin-bottom: 1rem;">🏆 TIC Hackathon 2.0 Winner</div>
-                                <h3 class="project-title">EchoMind - Voice-Powered Healthcare AI</h3>
-                                <p class="project-description">Award-winning voice-powered document Q&A system for healthcare professionals. Built with RAG, OpenAI Whisper, and React in under 24 hours at TIC Hackathon 2.0.</p>
+                                <h3 class="project-title">Eagle - Vessel Tracking System</h3>
+                                <p class="project-description">Vessel-tracking solution for Keystone Bank Nigeria to monitor bank-owned vessels, integrating AIS data. Designed database schema for ship information, routes, and live tracking for risk assessment.</p>
+                                <div class="tech-stack">
+                                    <span class="tech-tag">Database Design</span>
+                                    <span class="tech-tag">API Integration</span>
+                                    <span class="tech-tag">AIS Data</span>
+                                    <span class="tech-tag">Risk Management</span>
+                                </div>
+                                <div class="project-links">
+                                    <span class="project-link">View Case Study</span>
+                                </div>
+                                <p class="project-note">*Internal banking tool - Code repository not publicly available</p>
+                            </div>
+                        </article>
+
+                        <a href="project-echomind.html" class="project-card-link">
+                            <article class="project-card project-card-featured">
+                                <div class="project-image project-image-featured">EchoMind</div>
+                                <div class="project-content">
+                                    <div class="project-badge">TIC Hackathon 2.0 Winner</div>
+                                    <h3 class="project-title">EchoMind - Voice-Powered Healthcare AI</h3>
+                                    <p class="project-description">Award-winning voice-powered document Q&A system for healthcare professionals. Built with RAG, OpenAI Whisper, and React in under 24 hours at TIC Hackathon 2.0.</p>
+                                    <div class="tech-stack">
+                                        <span class="tech-tag">Python</span>
+                                        <span class="tech-tag">FastAPI</span>
+                                        <span class="tech-tag">React</span>
+                                        <span class="tech-tag">OpenAI</span>
+                                        <span class="tech-tag">RAG</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <span class="project-link">View Full Case Study</span>
+                                    </div>
+                                </div>
+                            </article>
+                        </a>
+
+                        <article class="project-card project-card-secondary" onclick="showEchoPayInfo()">
+                            <div class="project-image project-image-secondary">EchoPay</div>
+                            <div class="project-content">
+                                <div class="project-badge project-badge-secondary">TIC Hackathon 2.0 Winner</div>
+                                <h3 class="project-title">EchoPay - Intelligent Banking Platform</h3>
+                                <p class="project-description">Innovative fintech solution reimagining digital banking experience. Built in under 24 hours with focus on security, accessibility, and user experience. AI-enhanced platform addressing modern financial transaction challenges.</p>
                                 <div class="tech-stack">
                                     <span class="tech-tag">Python</span>
-                                    <span class="tech-tag">FastAPI</span>
                                     <span class="tech-tag">React</span>
-                                    <span class="tech-tag">OpenAI</span>
-                                    <span class="tech-tag">RAG</span>
+                                    <span class="tech-tag">AI/ML</span>
+                                    <span class="tech-tag">Security</span>
+                                    <span class="tech-tag">Fintech</span>
                                 </div>
                                 <div class="project-links">
-                                    <span class="project-link">View Full Case Study →</span>
+                                    <span class="project-link">View Details</span>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                    <div class="project-card" style="border: 2px solid #718096;">
-                        <div class="project-image" style="background: linear-gradient(135deg, #4a5568 0%, #718096 100%); color: white;">💳 EchoPay</div>
-                        <div class="project-content">
-                            <div style="background: #718096; color: white; padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.75rem; font-weight: 600; display: inline-block; margin-bottom: 1rem;">🏆 TIC Hackathon 2.0 Winner</div>
-                            <h3 class="project-title">EchoPay - Intelligent Banking Platform</h3>
-                            <p class="project-description">Innovative fintech solution reimagining digital banking experience. Built in under 24 hours with focus on security, accessibility, and user experience. AI-enhanced platform addressing modern financial transaction challenges.</p>
-                            <div class="tech-stack">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">AI/ML</span>
-                                <span class="tech-tag">Security</span>
-                                <span class="tech-tag">Fintech</span>
+        <!-- Experience Section -->
+        <section id="experience">
+            <div class="container">
+                <div class="fade-in">
+                    <h2 class="section-title">Professional Journey</h2>
+                    <p class="section-subtitle">Building expertise through diverse experiences in consulting, fintech, and entrepreneurship</p>
+
+                    <div class="experience-timeline">
+                        <article class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-date">July 2025 - September 2025</div>
+                                <h3 class="timeline-title">Risk Consulting Intern, Digital Risk</h3>
+                                <div class="timeline-company">Ernst & Young (EY)</div>
+                                <p class="timeline-description">Assisted in Enterprise Level Control (ELC) reviews for energy & financial clients, improving accuracy of risk assessments. Conducted IT control testing (change, access, backup), with findings adopted in client compliance evaluations.</p>
                             </div>
-                            <div class="project-links">
-                                <a href="#" class="project-link" onclick="showEchoPayInfo()">View Details</a>
+                        </article>
+
+                        <article class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-date">January 2025 - Present</div>
+                                <h3 class="timeline-title">Co-Founder & Frontend Developer</h3>
+                                <div class="timeline-company">Uni Ordering (Startup)</div>
+                                <p class="timeline-description">Built a food-ordering platform serving 1,000+ students, handling 30-40 daily orders. Led frontend development with responsive UI, boosting adoption and order efficiency. Oversaw operations and product design, merging technical execution with business decision-making.</p>
                             </div>
-                        </div>
+                        </article>
+
+                        <article class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-date">July 2024 - September 2024</div>
+                                <h3 class="timeline-title">Frontend Development Intern</h3>
+                                <div class="timeline-company">Unyte Africa</div>
+                                <p class="timeline-description">Developed scalable React interfaces with search, filter, and pagination for large datasets. Collaborated with cross-functional teams to deliver features on time using Agile practices. Optimized API-driven rendering to improve performance and load speed.</p>
+                            </div>
+                        </article>
+
+                        <article class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-date">2022 - December 2026</div>
+                                <h3 class="timeline-title">Computer Science Student</h3>
+                                <div class="timeline-company">Pan-Atlantic University</div>
+                                <p class="timeline-description">Maintaining a First-Class GPA (4.75/5.0) while specializing in data structures, algorithms, and full-stack development. Active in tech communities and leadership roles including collaboration with ICT team on AI projects.</p>
+                            </div>
+                        </article>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Experience Section -->
-    <section id="experience">
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="fade-in">
+                    <h2 class="section-title">Let's Build Something Amazing</h2>
+                    <p class="section-subtitle">Ready to collaborate? Let's connect and create solutions that matter.</p>
+
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+
+                        <button type="button" onclick="sendMessage()" class="cta-button cta-button-full">Send Message</button>
+                        <p class="contact-email">
+                            Or email me directly at <a href="mailto:aladenusiadeleke@gmail.com">aladenusiadeleke@gmail.com</a>
+                        </p>
+                    </form>
+
+                    <div class="social-links">
+                        <a href="mailto:aladenusiadeleke@gmail.com" class="social-link" title="Email" aria-label="Send email">
+                            <span>Email</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/adeleke-aladenusi-1a1350337/" class="social-link" title="LinkedIn" aria-label="Visit LinkedIn profile" target="_blank" rel="noopener noreferrer">
+                            <span>in</span>
+                        </a>
+                        <a href="https://github.com/AdelekeAP" class="social-link" title="GitHub" aria-label="Visit GitHub profile" target="_blank" rel="noopener noreferrer">
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
         <div class="container">
-            <div class="fade-in">
-                <h2 class="section-title">Professional Journey</h2>
-                <p class="section-subtitle">Building expertise through diverse experiences in consulting, fintech, and entrepreneurship</p>
-                
-                <div class="experience-timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="timeline-date">July 2025 – September 2025</div>
-                            <h3 class="timeline-title">Risk Consulting Intern, Digital Risk</h3>
-                            <div class="timeline-company">Ernst & Young (EY)</div>
-                            <p class="timeline-description">Assisted in Enterprise Level Control (ELC) reviews for energy & financial clients, improving accuracy of risk assessments. Conducted IT control testing (change, access, backup), with findings adopted in client compliance evaluations.</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="timeline-date">January 2025 – Present</div>
-                            <h3 class="timeline-title">Co-Founder & Frontend Developer</h3>
-                            <div class="timeline-company">Uni Ordering (Startup)</div>
-                            <p class="timeline-description">Built a food-ordering platform serving 1,000+ students, handling 30–40 daily orders. Led frontend development with responsive UI, boosting adoption and order efficiency. Oversaw operations and product design, merging technical execution with business decision-making.</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="timeline-date">July 2024 – September 2024</div>
-                            <h3 class="timeline-title">Frontend Development Intern</h3>
-                            <div class="timeline-company">Unyte Africa</div>
-                            <p class="timeline-description">Developed scalable React interfaces with search, filter, and pagination for large datasets. Collaborated with cross-functional teams to deliver features on time using Agile practices. Optimized API-driven rendering to improve performance and load speed.</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="timeline-date">2022 – December 2026</div>
-                            <h3 class="timeline-title">Computer Science Student</h3>
-                            <div class="timeline-company">Pan-Atlantic University</div>
-                            <p class="timeline-description">Maintaining a First-Class GPA (4.75/5.0) while specializing in data structures, algorithms, and full-stack development. Active in tech communities and leadership roles including collaboration with ICT team on AI projects.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <p>&copy; 2025 Paul Adeleke Aladenusi. All rights reserved.</p>
         </div>
-    </section>
+    </footer>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="fade-in">
-                <h2 class="section-title">Let's Build Something Amazing</h2>
-                <p class="section-subtitle">Ready to collaborate? Let's connect and create solutions that matter.</p>
-                
-                <div class="contact-form">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    
-                    <button type="button" onclick="sendMessage()" class="cta-button" style="width: 100%; text-align: center;">Send Message</button>
-                    <p style="text-align: center; margin-top: 1rem; color: #a0aec0; font-size: 0.9rem;">
-                        Or email me directly at <a href="mailto:aladenusiadeleke@gmail.com" style="color: #4a5568;">aladenusiadeleke@gmail.com</a>
-                    </p>
-                </div>
-
-                <div class="social-links">
-                    <a href="mailto:aladenusiadeleke@gmail.com" class="social-link" title="Email">✉</a>
-                    <a href="https://www.linkedin.com/in/adeleke-aladenusi-1a1350337/" class="social-link" title="LinkedIn">in</a>
-                    <a href="https://github.com/AdelekeAP" class="social-link" title="GitHub">⚡</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // Enhanced Custom Cursor with trails and faster response
-        const cursor = document.querySelector('.cursor');
-        const cursorFollower = document.querySelector('.cursor-follower');
-        const trails = document.querySelectorAll('.cursor-trail');
-        let mouseX = 0, mouseY = 0;
-        let followerX = 0, followerY = 0;
-        let trailPositions = Array(5).fill().map(() => ({x: 0, y: 0}));
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            cursor.style.left = mouseX + 'px';
-            cursor.style.top = mouseY + 'px';
-            
-            // Update trail positions
-            for (let i = trailPositions.length - 1; i > 0; i--) {
-                trailPositions[i] = {...trailPositions[i - 1]};
-            }
-            trailPositions[0] = {x: mouseX, y: mouseY};
-        });
-
-        function animateFollower() {
-            const speed = 0.4; // Faster response
-            followerX += (mouseX - followerX) * speed;
-            followerY += (mouseY - followerY) * speed;
-            cursorFollower.style.left = followerX + 'px';
-            cursorFollower.style.top = followerY + 'px';
-            
-            // Animate trails
-            trails.forEach((trail, index) => {
-                const delay = (index + 1) * 0.1;
-                const targetX = trailPositions[Math.min(index * 2, trailPositions.length - 1)].x;
-                const targetY = trailPositions[Math.min(index * 2, trailPositions.length - 1)].y;
-                
-                trail.style.left = targetX + 'px';
-                trail.style.top = targetY + 'px';
-                trail.style.opacity = Math.max(0, 0.8 - index * 0.2);
-            });
-            
-            requestAnimationFrame(animateFollower);
-        }
-        animateFollower();
-
-        // Enhanced cursor hover effects
-        const hoverElements = document.querySelectorAll('a, button, .project-card, .stat, .skill-bubble');
-        const textElements = document.querySelectorAll('h1, h2, h3, p');
-        
-        hoverElements.forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                cursor.classList.add('hover');
-                cursorFollower.classList.add('hover');
-                trails.forEach(trail => trail.style.opacity = '0.6');
-            });
-            element.addEventListener('mouseleave', () => {
-                cursor.classList.remove('hover');
-                cursorFollower.classList.remove('hover');
-            });
-        });
-
-        textElements.forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                cursor.classList.add('text-hover');
-            });
-            element.addEventListener('mouseleave', () => {
-                cursor.classList.remove('text-hover');
-            });
-        });
-
-        // Click effect
-        document.addEventListener('mousedown', () => {
-            cursor.classList.add('click');
-        });
-
-        document.addEventListener('mouseup', () => {
-            cursor.classList.remove('click');
-        });
-
-        // Magnetic effect for buttons
-        document.querySelectorAll('.magnetic').forEach(btn => {
-            btn.addEventListener('mousemove', (e) => {
-                const rect = btn.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                
-                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-            });
-            
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'translate(0px, 0px)';
-            });
-        });
-
-        // Interactive skill bubbles
-        document.querySelectorAll('.skill-bubble').forEach(bubble => {
-            bubble.addEventListener('click', () => {
-                const skill = bubble.textContent;
-                const messages = {
-                    'JavaScript': 'My go-to language for frontend magic and backend APIs!',
-                    'Python': 'Perfect for AI/ML projects and rapid prototyping.',
-                    'React': 'Building responsive UIs that users love.',
-                    'TypeScript': 'JavaScript with superpowers - type safety FTW!',
-                    'NestJS': 'Scalable Node.js frameworks for enterprise applications.',
-                    'Docker': 'Containerizing applications for consistent deployments.',
-                    'Firebase': 'Real-time databases and authentication made easy.',
-                    'Git': 'Version control mastery for collaborative development.'
-                };
-                
-                // Create a tooltip
-                const tooltip = document.createElement('div');
-                tooltip.textContent = messages[skill] || 'One of my favorite technologies!';
-                tooltip.style.cssText = `
-                    position: fixed;
-                    background: #1a202c;
-                    color: white;
-                    padding: 0.5rem 1rem;
-                    border-radius: 5px;
-                    font-size: 0.8rem;
-                    z-index: 10000;
-                    pointer-events: none;
-                    left: ${mouseX + 10}px;
-                    top: ${mouseY - 40}px;
-                    animation: fadeInOut 2s ease-in-out forwards;
-                `;
-                
-                document.body.appendChild(tooltip);
-                setTimeout(() => tooltip.remove(), 2000);
-            });
-        });
-
-        // Add CSS for fadeInOut animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeInOut {
-                0% { opacity: 0; transform: translateY(10px); }
-                20% { opacity: 1; transform: translateY(0); }
-                80% { opacity: 1; transform: translateY(0); }
-                100% { opacity: 0; transform: translateY(-10px); }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Terminal typing effect
-        function typeInTerminal() {
-            const terminal = document.querySelector('.terminal');
-            const text = 'const leke = { skills: ["JavaScript", "Python", "React", "Problem Solving"], passion: "Building meaningful tech" };';
-            const cursor = document.querySelector('.terminal-cursor');
-            
-            if (terminal && cursor) {
-                let i = 0;
-                terminal.innerHTML = '> ';
-                
-                function type() {
-                    if (i < text.length) {
-                        terminal.innerHTML = '> ' + text.slice(0, i + 1) + '<span class="terminal-cursor">|</span>';
-                        i++;
-                        setTimeout(type, 50);
-                    }
-                }
-                
-                // Start typing when terminal comes into view
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            setTimeout(type, 500);
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                });
-                
-                observer.observe(terminal);
-            }
-        }
-
-        // Initialize terminal typing
-        setTimeout(typeInTerminal, 1000);
-
-        // Eagle project info modal
-        function showEagleInfo() {
-            const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.8);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 10000;
-                cursor: pointer;
-            `;
-
-            const content = document.createElement('div');
-            content.style.cssText = `
-                background: white;
-                padding: 3rem;
-                border-radius: 20px;
-                max-width: 600px;
-                text-align: center;
-                cursor: default;
-                max-height: 80vh;
-                overflow-y: auto;
-            `;
-
-            content.innerHTML = `
-                <h3 style="margin-bottom: 1rem; color: #1a202c;">Eagle Vessel Tracking System</h3>
-                <div style="background: #f7fafc; padding: 2rem; border-radius: 10px; margin: 1rem 0; text-align: left;">
-                    <h4 style="color: #1a202c; margin-bottom: 1rem;">🎯 Project Overview</h4>
-                    <p style="color: #4a5568; margin-bottom: 1rem;">Developed a comprehensive vessel-tracking solution for Keystone Bank Nigeria to monitor bank-owned vessels and enhance operational oversight.</p>
-
-                    <h4 style="color: #1a202c; margin-bottom: 0.5rem;">🔧 Technical Implementation</h4>
-                    <ul style="color: #4a5568; margin-bottom: 1rem; padding-left: 1.5rem;">
-                        <li>Designed robust database schema for ship information and routes</li>
-                        <li>Integrated AIS (Automatic Identification System) data for real-time tracking</li>
-                        <li>Proposed API architecture for maritime data providers</li>
-                        <li>Built risk assessment framework for asset management</li>
-                    </ul>
-
-                    <h4 style="color: #1a202c; margin-bottom: 0.5rem;">💡 Impact</h4>
-                    <p style="color: #4a5568;">Enabled financial institutions to assess vessel-related asset risks more effectively and improve operational decision-making.</p>
-                </div>
-                <p style="color: #718096; font-size: 0.9rem;">*Internal banking tool - Code repository not publicly available due to confidentiality</p>
-                <button onclick="this.parentElement.parentElement.remove()" style="margin-top: 1rem; padding: 0.5rem 2rem; background: #1a202c; color: white; border: none; border-radius: 25px; cursor: pointer;">Close</button>
-            `;
-
-            modal.appendChild(content);
-            document.body.appendChild(modal);
-
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) modal.remove();
-            });
-        }
-
-        // EchoMind project info modal
-        function showEchoMindInfo() {
-            const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.8);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 10000;
-                cursor: pointer;
-            `;
-
-            const content = document.createElement('div');
-            content.style.cssText = `
-                background: white;
-                padding: 3rem;
-                border-radius: 20px;
-                max-width: 700px;
-                text-align: center;
-                cursor: default;
-                max-height: 80vh;
-                overflow-y: auto;
-            `;
-
-            content.innerHTML = `
-                <div style="background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%); color: white; padding: 0.5rem 1rem; border-radius: 15px; font-size: 0.9rem; font-weight: 600; display: inline-block; margin-bottom: 1rem;">🏆 TIC Hackathon 2.0 Winner</div>
-                <h3 style="margin-bottom: 1rem; color: #1a202c;">🏥 EchoMind - AI Healthcare Solution</h3>
-                <div style="background: #f7fafc; padding: 2rem; border-radius: 10px; margin: 1rem 0; text-align: left;">
-                    <h4 style="color: #1a202c; margin-bottom: 1rem;">🎯 The Challenge</h4>
-                    <p style="color: #4a5568; margin-bottom: 1rem;">Built in under 24 hours for TIC Hackathon 2.0 (Oct 24-25, 2025) under the theme "Reimagining Today with AI" - addressing critical healthcare accessibility challenges.</p>
-
-                    <h4 style="color: #1a202c; margin-bottom: 0.5rem;">💡 The Innovation</h4>
-                    <ul style="color: #4a5568; margin-bottom: 1rem; padding-left: 1.5rem;">
-                        <li>AI-powered platform improving healthcare accessibility</li>
-                        <li>Intelligent medical data management and processing</li>
-                        <li>User-friendly interface designed for diverse user needs</li>
-                        <li>Efficient patient interaction workflows</li>
-                        <li>Focus on removing barriers to healthcare access</li>
-                    </ul>
-
-                    <h4 style="color: #1a202c; margin-bottom: 0.5rem;">🔧 Technical Approach</h4>
-                    <p style="color: #4a5568; margin-bottom: 1rem;">Full-stack solution with Python backend, React frontend, and AI/ML integration. Emphasis on security, scalability, and intuitive user experience.</p>
-
-                    <h4 style="color: #1a202c; margin-bottom: 0.5rem;">👥 Team & Role</h4>
-                    <p style="color: #4a5568; margin-bottom: 1rem;">4-person team with intense 24-hour development sprint. Served as backend developer while contributing across full stack - true collaborative hackathon experience.</p>
-
-                    <h4 style="color: #1a202c; margin-bottom: 0.5rem;">🏅 Achievement</h4>
-                    <p style="color: #4a5568;">Won TIC Hackathon 2.0 alongside EchoPay, demonstrating innovation across both Healthcare and Fintech sectors in a single competition.</p>
-                </div>
-                <button onclick="this.parentElement.parentElement.remove()" style="margin-top: 1rem; padding: 0.5rem 2rem; background: #22c55e; color: white; border: none; border-radius: 25px; cursor: pointer;">Close</button>
-            `;
-
-            modal.appendChild(content);
-            document.body.appendChild(modal);
-
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) modal.remove();
-            });
-        }
-
-        // EchoPay project info modal
-        function showEchoPayInfo() {
-            const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.8);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 10000;
-                cursor: pointer;
-            `;
-
-            const content = document.createElement('div');
-            content.style.cssText = `
-                background: white;
-                padding: 3rem;
-                border-radius: 20px;
-                max-width: 700px;
-                text-align: center;
-                cursor: default;
-                max-height: 80vh;
-                overflow-y: auto;
-            `;
-
-            content.innerHTML = `
-                <div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 0.5rem 1rem; border-radius: 15px; font-size: 0.9rem; font-weight: 600; display: inline-block; margin-bottom: 1rem;">🏆 TIC Hackathon 2.0 Winner</div>
-                <h3 style="margin-bottom: 1rem; color: #1a202c;">💳 EchoPay - Intelligent Banking Platform</h3>
-                <div style="background: #f7fafc; padding: 2rem; border-radius: 10px; margin: 1rem 0; text-align: left;">
-                    <h4 style="color: #1a202c; margin-bottom: 1rem;">🎯 The Challenge</h4>
-                    <p style="color: #4a5568; margin-bottom: 1rem;">Built in under 24 hours for TIC Hackathon 2.0 (Oct 24-25, 2025) under "Reimagining Today with AI" theme - addressing modern digital banking challenges.</p>
-
-                    <h4 style="color: #1a202c; margin-bottom: 0.5rem;">💡 The Innovation</h4>
-                    <ul style="color: #4a5568; margin-bottom: 1rem; padding-left: 1.5rem;">
-                        <li>AI-enhanced banking platform for improved user experience</li>
-                        <li>Advanced security features protecting financial transactions</li>
-                        <li>Intelligent authentication system for secure access</li>
-                        <li>Streamlined financial operations and transaction processing</li>
-                        <li>Accessible interface designed for diverse user needs</li>
-                    </ul>
-
-                    <h4 style="color: #1a202c; margin-bottom: 0.5rem;">🔒 Security Focus</h4>
-                    <p style="color: #4a5568; margin-bottom: 1rem;">Enterprise-grade security architecture with encrypted data storage, multi-layer authentication, and secure session management. Banking-level security standards throughout.</p>
-
-                    <h4 style="color: #1a202c; margin-bottom: 0.5rem;">🔧 Technical Approach</h4>
-                    <p style="color: #4a5568; margin-bottom: 1rem;">Full-stack solution with Python backend, React frontend, and AI/ML integration. Emphasis on security, performance, and seamless user experience.</p>
-
-                    <h4 style="color: #1a202c; margin-bottom: 0.5rem;">👥 Team & Role</h4>
-                    <p style="color: #4a5568; margin-bottom: 1rem;">4-person team completing the project in under 24 hours. Led backend development while collaborating across full stack in intense hackathon environment.</p>
-
-                    <h4 style="color: #1a202c; margin-bottom: 0.5rem;">🏅 Achievement</h4>
-                    <p style="color: #4a5568;">Won TIC Hackathon 2.0 with EchoMind, showcasing versatility across Healthcare and Fintech AI innovation in under 24 hours.</p>
-                </div>
-                <button onclick="this.parentElement.parentElement.remove()" style="margin-top: 1rem; padding: 0.5rem 2rem; background: #0891b2; color: white; border: none; border-radius: 25px; cursor: pointer;">Close</button>
-            `;
-
-            modal.appendChild(content);
-            document.body.appendChild(modal);
-
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) modal.remove();
-            });
-        }
-
-        // Resume download function
-        function downloadResume() {
-            // Since your resume is local, show instructions
-            const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.8);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 10000;
-            `;
-            
-            const content = document.createElement('div');
-            content.style.cssText = `
-                background: white;
-                padding: 3rem;
-                border-radius: 20px;
-                max-width: 500px;
-                text-align: center;
-            `;
-            
-            content.innerHTML = `
-                <h3 style="margin-bottom: 1rem; color: #1a202c;">📄 Resume Request</h3>
-                <p style="color: #4a5568; margin-bottom: 2rem;">I'd love to share my resume with you! Please send me a quick email and I'll respond with my latest resume within hours.</p>
-                <a href="mailto:aladenusiadeleke@gmail.com?subject=Resume Request&body=Hi Leke, I'd like to request your resume. Thanks!" 
-                   style="display: inline-block; padding: 1rem 2rem; background: #1a202c; color: white; text-decoration: none; border-radius: 25px; margin-right: 1rem;">
-                   📧 Request Resume
-                </a>
-                <button onclick="this.parentElement.parentElement.remove()" style="padding: 1rem 2rem; background: transparent; color: #1a202c; border: 2px solid #1a202c; border-radius: 25px; cursor: pointer;">Close</button>
-            `;
-            
-            modal.appendChild(content);
-            document.body.appendChild(modal);
-        }
-
-        // Simple contact form handler
-        function sendMessage() {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            if (!name || !email || !message) {
-                alert('Please fill in all fields');
-                return;
-            }
-            
-            // Create mailto link with form data
-            const subject = `Portfolio Contact from ${name}`;
-            const body = `Hi Leke,
-
-${message}
-
-Best regards,
-${name}
-${email}`;
-            
-            const mailtoLink = `mailto:aladenusiadeleke@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            window.location.href = mailtoLink;
-            
-            // Reset form
-            document.getElementById('name').value = '';
-            document.getElementById('email').value = '';
-            document.getElementById('message').value = '';
-            
-            alert('Thank you! Your email client should open with the message ready to send.');
-        }
-        function showAIDemo() {
-            const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.8);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 10000;
-                cursor: pointer;
-            `;
-            
-            const content = document.createElement('div');
-            content.style.cssText = `
-                background: white;
-                padding: 3rem;
-                border-radius: 20px;
-                max-width: 600px;
-                text-align: center;
-                cursor: default;
-            `;
-            
-            content.innerHTML = `
-                <h3 style="margin-bottom: 1rem; color: #1a202c;">PAU AI Knowledge Assistant Demo</h3>
-                <div style="background: #f7fafc; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
-                    <div style="text-align: left; font-family: monospace;">
-                        <div style="color: #4a5568; margin-bottom: 0.5rem;">🤖 PAU Assistant: Hello! How can I help you today?</div>
-                        <div style="color: #1a202c; margin-bottom: 0.5rem;">👤 Student: What are the library opening hours?</div>
-                        <div style="color: #4a5568; margin-bottom: 0.5rem;">🤖 PAU Assistant: The library is open Monday-Friday: 8AM-10PM, Saturday: 9AM-6PM, Sunday: 2PM-8PM</div>
-                        <div style="color: #1a202c; margin-bottom: 0.5rem;">👤 Student: How do I register for courses?</div>
-                        <div style="color: #4a5568;">🤖 PAU Assistant: You can register through the student portal. Go to Academic → Course Registration. The system opens 2 weeks before each semester...</div>
-                    </div>
-                </div>
-                <p style="color: #718096; font-size: 0.9rem;">This AI assistant serves 700+ students and staff, providing instant access to university policies, procedures, and guidelines.</p>
-                <button onclick="this.parentElement.parentElement.remove()" style="margin-top: 1rem; padding: 0.5rem 2rem; background: #1a202c; color: white; border: none; border-radius: 25px; cursor: pointer;">Close</button>
-            `;
-            
-            modal.appendChild(content);
-            document.body.appendChild(modal);
-            
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) modal.remove();
-            });
-        }
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Mobile menu toggle
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const navLinks = document.getElementById('navLinks');
-
-        mobileMenuToggle.addEventListener('click', () => {
-            mobileMenuToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Fade in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Form submission
-        document.querySelector('.contact-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const message = formData.get('message');
-            
-            // Here you would typically send the form data to a server
-            alert(`Thanks ${name}! Your message has been sent. I'll get back to you soon! 🚀`);
-            e.target.reset();
-        });
-
-        // Parallax effect for hero background
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.parallax-bg');
-            if (parallax) {
-                const speed = scrolled * 0.5;
-                parallax.style.transform = `translateY(${speed}px)`;
-            }
-        });
-
-        // Add random movement to particles
-        document.querySelectorAll('.particle').forEach((particle, index) => {
-            const randomDelay = Math.random() * 2;
-            const randomDuration = 4 + Math.random() * 4;
-            particle.style.animationDelay = randomDelay + 's';
-            particle.style.animationDuration = randomDuration + 's';
-            
-            // Random positioning
-            particle.style.top = Math.random() * 100 + '%';
-        });
-    </script>
+    <!-- External JavaScript -->
+    <script src="js/main.js"></script>
 </body>
 </html>
