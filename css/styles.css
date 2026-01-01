@@ -1498,8 +1498,10 @@ footer a:hover {
     .theme-toggle {
         position: absolute;
         right: 60px;
-        top: 50%;
-        transform: translateY(-50%);
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 44px;
     }
 
     .hero h1 {

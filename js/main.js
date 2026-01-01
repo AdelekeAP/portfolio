@@ -24,10 +24,10 @@ function initThemeToggle() {
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
 
-        // Add a little animation feedback
-        themeToggle.style.transform = 'scale(0.9)';
+        // Add a little animation feedback (using opacity to avoid transform conflicts on mobile)
+        themeToggle.style.opacity = '0.7';
         setTimeout(() => {
-            themeToggle.style.transform = 'scale(1)';
+            themeToggle.style.opacity = '1';
         }, 150);
     });
 }
