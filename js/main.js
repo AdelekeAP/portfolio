@@ -150,14 +150,14 @@ document.querySelectorAll('.skill-bubble').forEach(bubble => {
     bubble.addEventListener('click', () => {
         const skill = bubble.textContent;
         const messages = {
-            'JavaScript': 'My go-to language for frontend magic and backend APIs!',
-            'Python': 'Perfect for AI/ML projects and rapid prototyping.',
+            'Django/DRF': 'Building production APIs with Django REST Framework.',
+            'PostgreSQL': 'Rock-solid relational database for production systems.',
             'React': 'Building responsive UIs that users love.',
             'TypeScript': 'JavaScript with superpowers - type safety FTW!',
-            'NestJS': 'Scalable Node.js frameworks for enterprise applications.',
-            'Docker': 'Containerizing applications for consistent deployments.',
-            'Firebase': 'Real-time databases and authentication made easy.',
-            'Git': 'Version control mastery for collaborative development.'
+            'React Native': 'Cross-platform mobile apps with Expo.',
+            'Stripe/Plaid': 'Payment processing and bank connections for fintech.',
+            'Claude Code': 'AI-first development workflow for planning and shipping.',
+            'Docker': 'Containerizing applications for consistent deployments.'
         };
 
         // Create tooltip
@@ -311,6 +311,56 @@ function showEchoPayInfo() {
             <p style="color: #4a5568;">Won TIC Hackathon 2.0 with EchoMind, showcasing versatility across Healthcare and Fintech AI innovation in under 24 hours.</p>
         </div>
         <button onclick="this.parentElement.parentElement.remove()" style="margin-top: 1rem; padding: 0.5rem 2rem; background: #0891b2; color: white; border: none; border-radius: 25px; cursor: pointer;">Close</button>
+    `);
+}
+
+// Royal Academy project info
+function showRoyalAcademyInfo() {
+    createModal(`
+        <h3 style="margin-bottom: 1rem; color: #1a202c;">Royal Academy — EdTech Platform</h3>
+        <div style="background: #f7fafc; padding: 2rem; border-radius: 10px; margin: 1rem 0; text-align: left;">
+            <h4 style="color: #1a202c; margin-bottom: 1rem;">Project Overview</h4>
+            <p style="color: #4a5568; margin-bottom: 1rem;">Full-stack educational platform built with Django and React, serving as a comprehensive learning management system with payment processing and content delivery.</p>
+
+            <h4 style="color: #1a202c; margin-bottom: 0.5rem;">Technical Implementation</h4>
+            <ul style="color: #4a5568; margin-bottom: 1rem; padding-left: 1.5rem;">
+                <li>Complete Stripe payment lifecycle — checkout, webhooks, customer portal</li>
+                <li>Activity management system with admin tooling</li>
+                <li>Student video player for course content delivery</li>
+                <li>Django/DRF backend with React frontend</li>
+                <li>649 passing tests at 81% coverage with CI/CD against real PostgreSQL</li>
+            </ul>
+
+            <h4 style="color: #1a202c; margin-bottom: 0.5rem;">Impact</h4>
+            <p style="color: #4a5568;">Production-grade edtech platform enabling seamless course management, payments, and content delivery for students and administrators.</p>
+        </div>
+        <p style="color: #718096; font-size: 0.9rem;">*Production platform — code not publicly available</p>
+        <button onclick="this.parentElement.parentElement.remove()" style="margin-top: 1rem; padding: 0.5rem 2rem; background: #1a202c; color: white; border: none; border-radius: 25px; cursor: pointer;">Close</button>
+    `);
+}
+
+// Fomo-Fi project info
+function showFomoFiInfo() {
+    createModal(`
+        <h3 style="margin-bottom: 1rem; color: #1a202c;">Fomo-Fi — Personal Finance App</h3>
+        <div style="background: #f7fafc; padding: 2rem; border-radius: 10px; margin: 1rem 0; text-align: left;">
+            <h4 style="color: #1a202c; margin-bottom: 1rem;">Project Overview</h4>
+            <p style="color: #4a5568; margin-bottom: 1rem;">Mobile-first personal finance application with bank connection, subscription billing, and modern authentication — built from zero with Claude Code as the core development tool.</p>
+
+            <h4 style="color: #1a202c; margin-bottom: 0.5rem;">Technical Implementation</h4>
+            <ul style="color: #4a5568; margin-bottom: 1rem; padding-left: 1.5rem;">
+                <li>Plaid integration for secure bank account connection</li>
+                <li>Stripe subscription billing for premium features</li>
+                <li>Clerk authentication for secure user management</li>
+                <li>Monorepo architecture — React Native/Expo frontend, Django backend</li>
+                <li>Built entirely with Claude Code AI-first workflow</li>
+            </ul>
+
+            <h4 style="color: #1a202c; margin-bottom: 0.5rem;">Status</h4>
+            <p style="color: #4a5568;">In active development — targeting mid-2026 launch.</p>
+        </div>
+        <p style="color: #718096; font-size: 0.9rem;">*In active development — launching mid-2026</p>
+        <button onclick="this.parentElement.parentElement.remove()" style="margin-top: 1rem; padding: 0.5rem 2rem; background: #1a202c; color: white; border: none; border-radius: 25px; cursor: pointer;">Close</button>
     `);
 }
 

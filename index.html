@@ -75,7 +75,7 @@
                 <div class="hero-content fade-in">
                     <h1>Paul Adeleke Aladenusi</h1>
                     <div class="nickname">(Leke)</div>
-                    <p class="tagline">Computer Science undergraduate crafting digital experiences at the intersection of tech innovation and cultural authenticity. Building the future, one elegant solution at a time.</p>
+                    <p class="tagline">Full-stack engineer building fintech, edtech, and SaaS products from zero to one. I use Claude Code as a core development tool and ship production-grade software across Django, React, and React Native.</p>
                     <div class="hero-buttons">
                         <a href="#projects" class="cta-button magnetic">View My Work</a>
                         <a href="mailto:aladenusiadeleke@gmail.com?subject=Resume Request&body=Hi Leke, I'd like to request your resume. Thanks!" class="cta-button cta-button-outline magnetic">Request Resume</a>
@@ -119,9 +119,7 @@
                         <div class="about-image">LA</div>
                         <div class="about-content">
                             <h3>Tech Enthusiast & Cultural Creator</h3>
-                            <p>I'm a high-performing Computer Science undergraduate at Pan-Atlantic University, Nigeria, graduating December 2026 with a consistent First-Class GPA (4.75/5.0). My journey spans from risk consulting at EY to building entrepreneurial ventures that serve real community needs. Recently won TIC Hackathon 2.0 with two AI-powered solutions built in under 24 hours: EchoMind (Healthcare) and EchoPay (Fintech).</p>
-
-                            <p>What sets me apart is my ability to bridge technical excellence with cultural authenticity. I thrive in creating solutions that don't just work, they resonate. Whether it's developing secure backend APIs, designing intuitive user experiences, integrating AI/ML capabilities, or building production-ready products under intense time pressure, I approach every project with a minimalist yet impactful philosophy.</p>
+                            <p>I'm a full-stack engineer and final-year Computer Science student at Pan-Atlantic University (4.73/5.0 GPA, First Class). Currently a Senior Developer at Benmore Technologies, where I own end-to-end development across four concurrent production products — building Django/DRF backends, React frontends, React Native mobile apps, and payment integrations with Stripe, Plaid, and Clerk. I operate with a deeply integrated AI-first workflow using Claude Code for planning, implementation, and automated PR review. Previously interned at Ernst & Young (Digital Risk) and co-founded UniOrdering, a campus delivery platform serving 1,000+ students.</p>
 
                             <div class="terminal">
                                 const leke = { skills: ["JavaScript", "Python", "React", "Problem Solving"], passion: "Building meaningful tech" };<span class="terminal-cursor">|</span>
@@ -130,14 +128,14 @@
                             <div class="skills-section">
                                 <h4>Core Technologies</h4>
                                 <div class="skills-container">
-                                    <span class="skill-bubble">JavaScript</span>
-                                    <span class="skill-bubble">Python</span>
+                                    <span class="skill-bubble">Django/DRF</span>
+                                    <span class="skill-bubble">PostgreSQL</span>
                                     <span class="skill-bubble">React</span>
                                     <span class="skill-bubble">TypeScript</span>
-                                    <span class="skill-bubble">NestJS</span>
+                                    <span class="skill-bubble">React Native</span>
+                                    <span class="skill-bubble">Stripe/Plaid</span>
+                                    <span class="skill-bubble">Claude Code</span>
                                     <span class="skill-bubble">Docker</span>
-                                    <span class="skill-bubble">Firebase</span>
-                                    <span class="skill-bubble">Git</span>
                                 </div>
                             </div>
                         </div>
@@ -145,16 +143,16 @@
 
                     <div class="stats">
                         <div class="stat">
-                            <span class="stat-number">4.75/5.0</span>
+                            <span class="stat-number">4.73/5.0</span>
                             <div class="stat-label">First Class GPA</div>
                         </div>
                         <div class="stat">
-                            <span class="stat-number">1000+</span>
-                            <div class="stat-label">Students Served</div>
+                            <span class="stat-number">4</span>
+                            <div class="stat-label">Production Products</div>
                         </div>
                         <div class="stat">
-                            <span class="stat-number">Winner</span>
-                            <div class="stat-label">TIC Hackathon 2.0</div>
+                            <span class="stat-number">1,000+</span>
+                            <div class="stat-label">Students Served</div>
                         </div>
                         <div class="stat">
                             <span class="stat-number">700+</span>
@@ -173,6 +171,44 @@
                     <p class="section-subtitle">Showcasing solutions that blend technical precision with user-centered design</p>
 
                     <div class="projects-grid">
+                        <article class="project-card" onclick="showRoyalAcademyInfo()">
+                            <div class="project-image">Royal Academy</div>
+                            <div class="project-content">
+                                <h3 class="project-title">Royal Academy — EdTech Platform</h3>
+                                <p class="project-description">Full-stack educational platform built with Django and React. Implemented complete Stripe payment lifecycle, activity management system with admin tooling, and student video player. 649 passing tests at 81% coverage with CI/CD running against real PostgreSQL.</p>
+                                <div class="tech-stack">
+                                    <span class="tech-tag">Django</span>
+                                    <span class="tech-tag">DRF</span>
+                                    <span class="tech-tag">React</span>
+                                    <span class="tech-tag">Stripe</span>
+                                    <span class="tech-tag">PostgreSQL</span>
+                                </div>
+                                <div class="project-links">
+                                    <span class="project-link">View Details</span>
+                                </div>
+                                <p class="project-note">*Production platform — code not publicly available*</p>
+                            </div>
+                        </article>
+
+                        <article class="project-card" onclick="showFomoFiInfo()">
+                            <div class="project-image">Fomo-Fi</div>
+                            <div class="project-content">
+                                <h3 class="project-title">Fomo-Fi — Personal Finance App</h3>
+                                <p class="project-description">Mobile-first personal finance app with Plaid bank connection, Stripe subscription billing, and Clerk authentication. Monorepo architecture with React Native/Expo frontend and Django backend. Built from zero with Claude Code as core development tool.</p>
+                                <div class="tech-stack">
+                                    <span class="tech-tag">React Native</span>
+                                    <span class="tech-tag">Django</span>
+                                    <span class="tech-tag">Plaid</span>
+                                    <span class="tech-tag">Stripe</span>
+                                    <span class="tech-tag">Clerk</span>
+                                </div>
+                                <div class="project-links">
+                                    <span class="project-link">View Details</span>
+                                </div>
+                                <p class="project-note">*In active development — launching mid-2026*</p>
+                            </div>
+                        </article>
+
                         <a href="https://uniordering.com" target="_blank" class="project-card-link">
                             <article class="project-card">
                                 <div class="project-image">
@@ -289,6 +325,15 @@
                     <div class="experience-timeline">
                         <article class="timeline-item">
                             <div class="timeline-content">
+                                <div class="timeline-date">Dec 2025 - Present</div>
+                                <h3 class="timeline-title">Senior Full-Stack & Mobile Developer (Contract)</h3>
+                                <div class="timeline-company">Benmore Technologies</div>
+                                <p class="timeline-description">Own end-to-end development across four concurrent production products (edtech, fintech, property-tech, ERP). Build Django/DRF backends, React frontends, and React Native mobile apps. Integrated Stripe payment lifecycle (checkout, webhooks, customer portal), Plaid bank connection, and Clerk auth. Use Claude Code as a core development tool — Opus for planning, Sonnet for execution, CLAUDE.md for persistent project context, and Claude Bot for automated PR review. Maintain CI/CD pipelines with GitHub Actions, Vercel, and Sentry. Codebase at 649 passing tests with 81% coverage.</p>
+                            </div>
+                        </article>
+
+                        <article class="timeline-item">
+                            <div class="timeline-content">
                                 <div class="timeline-date">July 2025 - September 2025</div>
                                 <h3 class="timeline-title">Risk Consulting Intern, Digital Risk</h3>
                                 <div class="timeline-company">Ernst & Young (EY)</div>
@@ -319,7 +364,7 @@
                                 <div class="timeline-date">2022 - December 2026</div>
                                 <h3 class="timeline-title">Computer Science Student</h3>
                                 <div class="timeline-company">Pan-Atlantic University</div>
-                                <p class="timeline-description">Maintaining a First-Class GPA (4.75/5.0) while specializing in data structures, algorithms, and full-stack development. Active in tech communities and leadership roles including collaboration with ICT team on AI projects.</p>
+                                <p class="timeline-description">Maintaining a First-Class GPA (4.73/5.0) while specializing in data structures, algorithms, and full-stack development. Active in tech communities and leadership roles including collaboration with ICT team on AI projects.</p>
                             </div>
                         </article>
                     </div>
@@ -375,7 +420,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Paul Adeleke Aladenusi. All rights reserved.</p>
+            <p>&copy; 2026 Paul Adeleke Aladenusi. All rights reserved.</p>
         </div>
     </footer>
 
