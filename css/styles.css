@@ -621,6 +621,69 @@ section {
 }
 
 /* --------------------------------------------------------------------------
+   Certifications Section — Claude/Anthropic accent
+   -------------------------------------------------------------------------- */
+#certifications .stat {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(217, 119, 87, 0.2);
+    box-shadow: 0 4px 25px rgba(217, 119, 87, 0.1);
+    transition: transform var(--transition-base), box-shadow var(--transition-base), background-color var(--transition-theme);
+}
+
+#certifications .stat::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #D97757, #E8A87C, #D97757);
+}
+
+#certifications .stat:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 35px rgba(217, 119, 87, 0.25);
+}
+
+#certifications .stat-number {
+    font-size: 1.1rem;
+    background: linear-gradient(135deg, #D97757, #C4613F);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.4;
+    text-decoration: none;
+    display: block;
+}
+
+#certifications .stat-number:hover {
+    background: linear-gradient(135deg, #C4613F, #A8502F);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+#certifications .stat-label {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+}
+
+#certifications .stat-label:nth-child(2) {
+    color: #D97757;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 0.75rem;
+}
+
+#certifications .stat-label:last-child {
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+/* --------------------------------------------------------------------------
    Contact Section
    -------------------------------------------------------------------------- */
 .contact {
