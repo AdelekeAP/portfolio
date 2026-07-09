@@ -1,516 +1,293 @@
 /* ==========================================================================
-   Paul Aladenusi Portfolio - Main JavaScript
+   Paul Adeleke Aladenusi (Leke) — Portfolio
+   Interactions: nav scroll-state, hero name fit, scroll reveal,
+   role typewriter, project hover preview, 3D skills globe.
    ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   Theme Toggle (Dark/Light Mode)
-   -------------------------------------------------------------------------- */
-(function() {
-    // Get saved theme or default to light
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-})();
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Theme toggle functionality
-function initThemeToggle() {
-    const themeToggle = document.getElementById('themeToggle');
+/* ─── NAV SCROLL STATE ─────────────────────────────────────────────────── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
 
-    if (!themeToggle) return;
-
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-
-        // Add a little animation feedback (using opacity to avoid transform conflicts on mobile)
-        themeToggle.style.opacity = '0.7';
-        setTimeout(() => {
-            themeToggle.style.opacity = '1';
-        }, 150);
-    });
+/* ─── HERO NAME AUTO-FIT ───────────────────────────────────────────────── */
+function fitHeroName() {
+  const home = document.getElementById('home');
+  const lines = document.querySelectorAll('.hero-name .line span');
+  if (!home || !lines.length) return;
+  const cs = getComputedStyle(home);
+  const avail = home.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+  let size = Math.min(190, window.innerWidth * 0.14);
+  document.documentElement.style.setProperty('--name-size', size + 'px');
+  let widest = 0;
+  lines.forEach(l => { widest = Math.max(widest, l.scrollWidth); });
+  if (widest > avail) {
+    size = Math.floor(size * (avail / widest));
+    document.documentElement.style.setProperty('--name-size', size + 'px');
+  }
 }
+window.addEventListener('resize', fitHeroName);
+fitHeroName(); // initial measure (may use fallback metrics; re-measured once fonts load)
 
-// Initialize theme toggle when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initThemeToggle);
+// Gate the hero entrance on fonts being ready so the name never flashes in the
+// fallback font (FOUT). The hero text is held at opacity:0 / below its mask by CSS
+// until .fonts-ready is set, then the slide-up/fade animations run — measured with
+// the real Syne metrics.
+function revealHero() {
+  fitHeroName();
+  document.documentElement.classList.add('fonts-ready');
+}
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(revealHero);
+  setTimeout(revealHero, 2000); // fallback: reveal anyway if font loading stalls
 } else {
-    initThemeToggle();
+  revealHero(); // no Font Loading API — reveal immediately
 }
 
-/* --------------------------------------------------------------------------
-   Custom Cursor with Trails
-   -------------------------------------------------------------------------- */
-const cursor = document.querySelector('.cursor');
-const cursorFollower = document.querySelector('.cursor-follower');
-const trails = document.querySelectorAll('.cursor-trail');
+/* ─── SCROLL REVEAL ────────────────────────────────────────────────────── */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+/* ─── ROLE TYPEWRITER ──────────────────────────────────────────────────── */
+const roles = ['Backend-Focused Engineer', 'Full-Stack Developer', 'API Architect', 'React Native Developer', 'Fintech Builder'];
+if (!prefersReducedMotion) {
+  let ri = 0, ci = 0, deleting = false;
+  function typeRole() {
+    const el = document.getElementById('role-text');
+    if (!el) return;
+    const target = roles[ri];
+    if (!deleting) {
+      el.textContent = target.slice(0, ++ci);
+      if (ci === target.length) { deleting = true; setTimeout(typeRole, 2200); return; }
+    } else {
+      el.textContent = target.slice(0, --ci);
+      if (ci === 0) { deleting = false; ri = (ri + 1) % roles.length; }
+    }
+    setTimeout(typeRole, deleting ? 40 : 80);
+  }
+  setTimeout(typeRole, 2000);
+}
+
+/* ─── PROJECT HOVER PREVIEW ────────────────────────────────────────────── */
+const preview = document.getElementById('project-preview');
+const previewImg = document.getElementById('preview-img');
 let mouseX = 0, mouseY = 0;
-let followerX = 0, followerY = 0;
-let trailPositions = Array(5).fill().map(() => ({ x: 0, y: 0 }));
+let previewToken = 0; // bumped on every enter/leave to invalidate stale loads
 
-// Only initialize cursor on non-touch devices
-if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
+document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
 
-        if (cursor) {
-            cursor.style.left = mouseX + 'px';
-            cursor.style.top = mouseY + 'px';
-        }
+function positionPreview() {
+  const pw = preview.offsetWidth, ph = preview.offsetHeight;
+  const vw = window.innerWidth, vh = window.innerHeight;
+  let x = mouseX + 24, y = mouseY - ph / 2;
+  if (x + pw > vw - 16) x = mouseX - pw - 24;   // flip to left near right edge
+  if (y < 16) y = 16;
+  if (y + ph > vh - 16) y = vh - ph - 16;        // clamp vertically
+  preview.style.left = x + 'px';
+  preview.style.top = y + 'px';
+}
 
-        // Update trail positions
-        for (let i = trailPositions.length - 1; i > 0; i--) {
-            trailPositions[i] = { ...trailPositions[i - 1] };
-        }
-        trailPositions[0] = { x: mouseX, y: mouseY };
-    });
+function hidePreview() {
+  previewToken++;                    // cancel any in-flight load's reveal
+  preview.classList.remove('active');
+  previewImg.removeAttribute('src'); // clear immediately — no stale image left visible
+}
 
-    function animateFollower() {
-        const speed = 0.4;
-        followerX += (mouseX - followerX) * speed;
-        followerY += (mouseY - followerY) * speed;
+function showPreview(src) {
+  const token = ++previewToken;
+  preview.classList.remove('active'); // stay hidden until the NEW image is ready
 
-        if (cursorFollower) {
-            cursorFollower.style.left = followerX + 'px';
-            cursorFollower.style.top = followerY + 'px';
-        }
+  // Preload into a detached Image so the load handler is attached BEFORE src is set —
+  // this can never miss the event (the failure mode of hooking a shared, possibly
+  // already-complete <img>). Only the current request (matching token) reveals.
+  const loader = new Image();
+  loader.onload = () => {
+    if (token !== previewToken) return; // a newer row — or a mouseleave — superseded us
+    previewImg.src = src;               // swap the visible image only once fully loaded
+    preview.classList.add('active');
+    positionPreview();
+  };
+  loader.onerror = () => { /* broken path: fail silently, leave preview hidden */ };
+  loader.src = src;
+}
 
-        // Animate trails
-        trails.forEach((trail, index) => {
-            const targetX = trailPositions[Math.min(index * 2, trailPositions.length - 1)].x;
-            const targetY = trailPositions[Math.min(index * 2, trailPositions.length - 1)].y;
+document.querySelectorAll('.project-item').forEach(item => {
+  item.addEventListener('mouseenter', () => {
+    const img = item.dataset.img;
+    if (!img) { hidePreview(); return; }
+    showPreview(img);
+  });
+  item.addEventListener('mouseleave', hidePreview);
+  item.addEventListener('mousemove', positionPreview);
+});
 
-            trail.style.left = targetX + 'px';
-            trail.style.top = targetY + 'px';
-            trail.style.opacity = Math.max(0, 0.8 - index * 0.2);
-        });
+// Warm the cache on load: preload every project image so the first hover is instant.
+// Refs are kept in an array so the requests aren't garbage-collected before they finish.
+const preloadedImages = [];
+document.querySelectorAll('.project-item[data-img]').forEach(item => {
+  const src = item.dataset.img;
+  if (!src) return;
+  const pre = new Image();
+  pre.src = src;
+  preloadedImages.push(pre);
+});
 
-        requestAnimationFrame(animateFollower);
+/* ─── 3D SKILLS GLOBE ──────────────────────────────────────────────────── */
+(function () {
+  const canvas = document.getElementById('globe-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const skills = [
+    'Django', 'FastAPI', 'Python', 'PostgreSQL', 'Redis',
+    'React', 'TypeScript', 'JavaScript', 'React Native', 'HTML/CSS',
+    'Docker', 'GitHub Actions', 'Vercel', 'Sentry', 'AWS',
+    'Stripe', 'Plaid', 'Clerk', 'REST APIs', 'JWT',
+    'CI/CD', 'Claude Code', 'Git', 'Tailwind CSS', 'Node.js',
+    'SQL', 'DRF', 'Expo', 'Agile', 'Linux'
+  ];
+
+  let W, H, radius, cx, cy, dpr;
+  let rotX = 0.3, rotY = 0, velX = 0, velY = 0.003;
+  let dragging = false, lastMX = 0, lastMY = 0;
+  const baseVelY = prefersReducedMotion ? 0 : 0.003;
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, window.innerWidth <= 600 ? 1.5 : 2);
+    const size = canvas.parentElement.offsetWidth;
+    canvas.width = size * dpr;
+    canvas.height = size * dpr;
+    canvas.style.width = size + 'px';
+    canvas.style.height = size + 'px';
+    W = canvas.width; H = canvas.height;
+    cx = W / 2; cy = H / 2;
+    radius = size * 0.38 * dpr;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  // Fibonacci sphere points
+  function fibSphere(n) {
+    const pts = [], g = Math.PI * (3 - Math.sqrt(5));
+    for (let i = 0; i < n; i++) {
+      const y = 1 - (i / (n - 1)) * 2;
+      const r = Math.sqrt(1 - y * y);
+      const t = g * i;
+      pts.push([Math.cos(t) * r, y, Math.sin(t) * r]);
     }
-    animateFollower();
+    return pts;
+  }
+  const pts = fibSphere(skills.length);
 
-    // Enhanced cursor hover effects
-    const hoverElements = document.querySelectorAll('a, button, .project-card, .stat, .skill-bubble');
-    const textElements = document.querySelectorAll('h1, h2, h3, p');
+  function rotate3D(x, y, z, rx, ry) {
+    let y2 = y * Math.cos(rx) - z * Math.sin(rx);
+    let z2 = y * Math.sin(rx) + z * Math.cos(rx);
+    let x2 = x * Math.cos(ry) + z2 * Math.sin(ry);
+    let z3 = -x * Math.sin(ry) + z2 * Math.cos(ry);
+    return [x2, y2, z3];
+  }
 
-    hoverElements.forEach(element => {
-        element.addEventListener('mouseenter', () => {
-            if (cursor) cursor.classList.add('hover');
-            if (cursorFollower) cursorFollower.classList.add('hover');
-            trails.forEach(trail => trail.style.opacity = '0.6');
-        });
-        element.addEventListener('mouseleave', () => {
-            if (cursor) cursor.classList.remove('hover');
-            if (cursorFollower) cursorFollower.classList.remove('hover');
-        });
-    });
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
 
-    textElements.forEach(element => {
-        element.addEventListener('mouseenter', () => {
-            if (cursor) cursor.classList.add('text-hover');
-        });
-        element.addEventListener('mouseleave', () => {
-            if (cursor) cursor.classList.remove('text-hover');
-        });
-    });
+    // Faint sphere outline
+    ctx.beginPath();
+    ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
 
-    // Click effect
-    document.addEventListener('mousedown', () => {
-        if (cursor) cursor.classList.add('click');
-    });
-
-    document.addEventListener('mouseup', () => {
-        if (cursor) cursor.classList.remove('click');
-    });
-}
-
-/* --------------------------------------------------------------------------
-   Magnetic Buttons
-   -------------------------------------------------------------------------- */
-document.querySelectorAll('.magnetic').forEach(btn => {
-    btn.addEventListener('mousemove', (e) => {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-    });
-
-    btn.addEventListener('mouseleave', () => {
-        btn.style.transform = 'translate(0px, 0px)';
-    });
-});
-
-/* --------------------------------------------------------------------------
-   Interactive Skill Bubbles
-   -------------------------------------------------------------------------- */
-document.querySelectorAll('.skill-bubble').forEach(bubble => {
-    bubble.addEventListener('click', () => {
-        const skill = bubble.textContent;
-        const messages = {
-            'Django/DRF': 'Building production APIs with Django REST Framework.',
-            'PostgreSQL': 'Rock-solid relational database for production systems.',
-            'React': 'Building responsive UIs that users love.',
-            'TypeScript': 'JavaScript with superpowers - type safety FTW!',
-            'React Native': 'Cross-platform mobile apps with Expo.',
-            'Stripe/Plaid': 'Payment processing and bank connections for fintech.',
-            'Claude Code': 'AI-first development workflow for planning and shipping.',
-            'Docker': 'Containerizing applications for consistent deployments.'
-        };
-
-        // Create tooltip
-        const tooltip = document.createElement('div');
-        tooltip.textContent = messages[skill] || 'One of my favorite technologies!';
-        tooltip.style.cssText = `
-            position: fixed;
-            background: #1a202c;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            font-size: 0.8rem;
-            z-index: 10000;
-            pointer-events: none;
-            left: ${mouseX + 10}px;
-            top: ${mouseY - 40}px;
-            animation: fadeInOut 2s ease-in-out forwards;
-        `;
-
-        document.body.appendChild(tooltip);
-        setTimeout(() => tooltip.remove(), 2000);
-    });
-});
-
-/* --------------------------------------------------------------------------
-   Terminal Typing Effect
-   -------------------------------------------------------------------------- */
-function typeInTerminal() {
-    const terminal = document.querySelector('.terminal');
-    const text = 'const leke = { skills: ["JavaScript", "Python", "React", "Problem Solving"], passion: "Building meaningful tech" };';
-
-    if (terminal) {
-        let i = 0;
-        terminal.innerHTML = '> ';
-
-        function type() {
-            if (i < text.length) {
-                terminal.innerHTML = '> ' + text.slice(0, i + 1) + '<span class="terminal-cursor">|</span>';
-                i++;
-                setTimeout(type, 50);
-            }
-        }
-
-        // Start typing when terminal comes into view
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setTimeout(type, 500);
-                    observer.unobserve(entry.target);
-                }
-            });
-        });
-
-        observer.observe(terminal);
-    }
-}
-
-// Initialize terminal typing after DOM load
-document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(typeInTerminal, 1000);
-});
-
-/* --------------------------------------------------------------------------
-   Modal Functions
-   -------------------------------------------------------------------------- */
-function createModal(content) {
-    const modal = document.createElement('div');
-    modal.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.8);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10000;
-        cursor: pointer;
-    `;
-
-    const contentDiv = document.createElement('div');
-    contentDiv.style.cssText = `
-        background: white;
-        padding: 3rem;
-        border-radius: 20px;
-        max-width: 700px;
-        text-align: center;
-        cursor: default;
-        max-height: 80vh;
-        overflow-y: auto;
-    `;
-
-    contentDiv.innerHTML = content;
-    modal.appendChild(contentDiv);
-    document.body.appendChild(modal);
-
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.remove();
-    });
-
-    return modal;
-}
-
-// Eagle project info
-function showEagleInfo() {
-    createModal(`
-        <h3 style="margin-bottom: 1rem; color: #1a202c;">Eagle Vessel Tracking System</h3>
-        <div style="background: #f7fafc; padding: 2rem; border-radius: 10px; margin: 1rem 0; text-align: left;">
-            <h4 style="color: #1a202c; margin-bottom: 1rem;">Project Overview</h4>
-            <p style="color: #4a5568; margin-bottom: 1rem;">Developed a comprehensive vessel-tracking solution for Keystone Bank Nigeria to monitor bank-owned vessels and enhance operational oversight.</p>
-
-            <h4 style="color: #1a202c; margin-bottom: 0.5rem;">Technical Implementation</h4>
-            <ul style="color: #4a5568; margin-bottom: 1rem; padding-left: 1.5rem;">
-                <li>Designed robust database schema for ship information and routes</li>
-                <li>Integrated AIS (Automatic Identification System) data for real-time tracking</li>
-                <li>Proposed API architecture for maritime data providers</li>
-                <li>Built risk assessment framework for asset management</li>
-            </ul>
-
-            <h4 style="color: #1a202c; margin-bottom: 0.5rem;">Impact</h4>
-            <p style="color: #4a5568;">Enabled financial institutions to assess vessel-related asset risks more effectively and improve operational decision-making.</p>
-        </div>
-        <p style="color: #718096; font-size: 0.9rem;">*Internal banking tool - Code repository not publicly available due to confidentiality</p>
-        <button onclick="this.parentElement.parentElement.remove()" style="margin-top: 1rem; padding: 0.5rem 2rem; background: #1a202c; color: white; border: none; border-radius: 25px; cursor: pointer;">Close</button>
-    `);
-}
-
-// EchoPay project info
-function showEchoPayInfo() {
-    createModal(`
-        <div style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 0.5rem 1rem; border-radius: 15px; font-size: 0.9rem; font-weight: 600; display: inline-block; margin-bottom: 1rem;">TIC Hackathon 2.0 Winner</div>
-        <h3 style="margin-bottom: 1rem; color: #1a202c;">EchoPay - Intelligent Banking Platform</h3>
-        <div style="background: #f7fafc; padding: 2rem; border-radius: 10px; margin: 1rem 0; text-align: left;">
-            <h4 style="color: #1a202c; margin-bottom: 1rem;">The Challenge</h4>
-            <p style="color: #4a5568; margin-bottom: 1rem;">Built in under 24 hours for TIC Hackathon 2.0 (Oct 24-25, 2025) under "Reimagining Today with AI" theme - addressing modern digital banking challenges.</p>
-
-            <h4 style="color: #1a202c; margin-bottom: 0.5rem;">The Innovation</h4>
-            <ul style="color: #4a5568; margin-bottom: 1rem; padding-left: 1.5rem;">
-                <li>AI-enhanced banking platform for improved user experience</li>
-                <li>Advanced security features protecting financial transactions</li>
-                <li>Intelligent authentication system for secure access</li>
-                <li>Streamlined financial operations and transaction processing</li>
-                <li>Accessible interface designed for diverse user needs</li>
-            </ul>
-
-            <h4 style="color: #1a202c; margin-bottom: 0.5rem;">Technical Approach</h4>
-            <p style="color: #4a5568; margin-bottom: 1rem;">Full-stack solution with Python backend, React frontend, and AI/ML integration. Emphasis on security, performance, and seamless user experience.</p>
-
-            <h4 style="color: #1a202c; margin-bottom: 0.5rem;">Achievement</h4>
-            <p style="color: #4a5568;">Won TIC Hackathon 2.0 with EchoMind, showcasing versatility across Healthcare and Fintech AI innovation in under 24 hours.</p>
-        </div>
-        <button onclick="this.parentElement.parentElement.remove()" style="margin-top: 1rem; padding: 0.5rem 2rem; background: #0891b2; color: white; border: none; border-radius: 25px; cursor: pointer;">Close</button>
-    `);
-}
-
-// Royal Academy project info
-function showRoyalAcademyInfo() {
-    createModal(`
-        <h3 style="margin-bottom: 1rem; color: #1a202c;">Royal Academy — EdTech Platform</h3>
-        <div style="background: #f7fafc; padding: 2rem; border-radius: 10px; margin: 1rem 0; text-align: left;">
-            <h4 style="color: #1a202c; margin-bottom: 1rem;">Project Overview</h4>
-            <p style="color: #4a5568; margin-bottom: 1rem;">Full-stack educational platform built with Django and React, serving as a comprehensive learning management system with payment processing and content delivery.</p>
-
-            <h4 style="color: #1a202c; margin-bottom: 0.5rem;">Technical Implementation</h4>
-            <ul style="color: #4a5568; margin-bottom: 1rem; padding-left: 1.5rem;">
-                <li>Complete Stripe payment lifecycle — checkout, webhooks, customer portal</li>
-                <li>Activity management system with admin tooling</li>
-                <li>Student video player for course content delivery</li>
-                <li>Django/DRF backend with React frontend</li>
-                <li>649 passing tests at 81% coverage with CI/CD against real PostgreSQL</li>
-            </ul>
-
-            <h4 style="color: #1a202c; margin-bottom: 0.5rem;">Impact</h4>
-            <p style="color: #4a5568;">Production-grade edtech platform enabling seamless course management, payments, and content delivery for students and administrators.</p>
-        </div>
-        <p style="color: #718096; font-size: 0.9rem;">*Production platform — code not publicly available</p>
-        <button onclick="this.parentElement.parentElement.remove()" style="margin-top: 1rem; padding: 0.5rem 2rem; background: #1a202c; color: white; border: none; border-radius: 25px; cursor: pointer;">Close</button>
-    `);
-}
-
-// Fomo-Fi project info
-function showFomoFiInfo() {
-    createModal(`
-        <h3 style="margin-bottom: 1rem; color: #1a202c;">Fomo-Fi — Personal Finance App</h3>
-        <div style="background: #f7fafc; padding: 2rem; border-radius: 10px; margin: 1rem 0; text-align: left;">
-            <h4 style="color: #1a202c; margin-bottom: 1rem;">Project Overview</h4>
-            <p style="color: #4a5568; margin-bottom: 1rem;">Mobile-first personal finance application with bank connection, subscription billing, and modern authentication — built from zero with Claude Code as the core development tool.</p>
-
-            <h4 style="color: #1a202c; margin-bottom: 0.5rem;">Technical Implementation</h4>
-            <ul style="color: #4a5568; margin-bottom: 1rem; padding-left: 1.5rem;">
-                <li>Plaid integration for secure bank account connection</li>
-                <li>Stripe subscription billing for premium features</li>
-                <li>Clerk authentication for secure user management</li>
-                <li>Monorepo architecture — React Native/Expo frontend, Django backend</li>
-                <li>Built entirely with Claude Code AI-first workflow</li>
-            </ul>
-
-            <h4 style="color: #1a202c; margin-bottom: 0.5rem;">Status</h4>
-            <p style="color: #4a5568;">In active development — targeting mid-2026 launch.</p>
-        </div>
-        <p style="color: #718096; font-size: 0.9rem;">*In active development — launching mid-2026</p>
-        <button onclick="this.parentElement.parentElement.remove()" style="margin-top: 1rem; padding: 0.5rem 2rem; background: #1a202c; color: white; border: none; border-radius: 25px; cursor: pointer;">Close</button>
-    `);
-}
-
-// AI Demo modal
-function showAIDemo() {
-    createModal(`
-        <h3 style="margin-bottom: 1rem; color: #1a202c;">PAU AI Knowledge Assistant Demo</h3>
-        <div style="background: #f7fafc; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
-            <div style="text-align: left; font-family: monospace;">
-                <div style="color: #4a5568; margin-bottom: 0.5rem;">PAU Assistant: Hello! How can I help you today?</div>
-                <div style="color: #1a202c; margin-bottom: 0.5rem;">Student: What are the library opening hours?</div>
-                <div style="color: #4a5568; margin-bottom: 0.5rem;">PAU Assistant: The library is open Monday-Friday: 8AM-10PM, Saturday: 9AM-6PM, Sunday: 2PM-8PM</div>
-                <div style="color: #1a202c; margin-bottom: 0.5rem;">Student: How do I register for courses?</div>
-                <div style="color: #4a5568;">PAU Assistant: You can register through the student portal. Go to Academic → Course Registration. The system opens 2 weeks before each semester...</div>
-            </div>
-        </div>
-        <p style="color: #718096; font-size: 0.9rem;">This AI assistant serves 700+ students and staff, providing instant access to university policies, procedures, and guidelines.</p>
-        <button onclick="this.parentElement.parentElement.remove()" style="margin-top: 1rem; padding: 0.5rem 2rem; background: #1a202c; color: white; border: none; border-radius: 25px; cursor: pointer;">Close</button>
-    `);
-}
-
-/* --------------------------------------------------------------------------
-   Contact Form Handler
-   -------------------------------------------------------------------------- */
-function sendMessage() {
-    const name = document.getElementById('name')?.value;
-    const email = document.getElementById('email')?.value;
-    const message = document.getElementById('message')?.value;
-
-    if (!name || !email || !message) {
-        alert('Please fill in all fields');
-        return;
+    // Latitude lines
+    for (let lat = -60; lat <= 60; lat += 30) {
+      const y_norm = Math.sin(lat * Math.PI / 180);
+      const r_lat = Math.cos(lat * Math.PI / 180) * radius;
+      const y_screen = cy + y_norm * radius;
+      if (y_screen > 0 && y_screen < H) {
+        ctx.beginPath();
+        ctx.ellipse(cx, y_screen, r_lat, r_lat * 0.25, 0, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(255,255,255,0.025)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
     }
 
-    // Create mailto link with form data
-    const subject = `Portfolio Contact from ${name}`;
-    const body = `Hi Leke,
+    // Compute & sort points by depth
+    const rendered = pts.map(([x, y, z], i) => {
+      const [rx, ry, rz] = rotate3D(x, y, z, rotX, rotY);
+      return { x: rx, y: ry, z: rz, label: skills[i] };
+    }).sort((a, b) => a.z - b.z);
 
-${message}
+    rendered.forEach(p => {
+      const sx = cx + p.x * radius;
+      const sy = cy - p.y * radius;
+      const depth = (p.z + 1) / 2; // 0=back, 1=front
+      const alpha = 0.15 + depth * 0.85;
+      const sz = (0.65 + depth * 0.6) * dpr;
+      const isFront = p.z > 0;
+      const fontSize = Math.round(10 * sz);
 
-Best regards,
-${name}
-${email}`;
+      ctx.save();
+      ctx.font = `${isFront ? 500 : 400} ${fontSize}px 'Space Grotesk', sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
 
-    const mailtoLink = `mailto:aladenusiadeleke@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoLink;
+      // Leading dot for the frontmost labels
+      if (depth > 0.75) {
+        ctx.fillStyle = accent;
+        ctx.globalAlpha = alpha;
+        ctx.beginPath();
+        ctx.arc(sx - ctx.measureText(p.label).width / 2 - 8, sy, 2.5 * dpr, 0, Math.PI * 2);
+        ctx.fill();
+      }
 
-    // Reset form
-    document.getElementById('name').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('message').value = '';
+      ctx.fillStyle = (isFront && depth > 0.6) ? accent : '#efefef';
+      ctx.globalAlpha = alpha * (isFront ? 0.9 : 0.45);
+      ctx.fillText(p.label, sx, sy);
+      ctx.restore();
+    });
 
-    alert('Thank you! Your email client should open with the message ready to send.');
-}
-
-/* --------------------------------------------------------------------------
-   Navigation
-   -------------------------------------------------------------------------- */
-// Navbar scroll effect
-window.addEventListener('scroll', () => {
-    const navbar = document.getElementById('navbar');
-    if (navbar) {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+    if (!dragging) {
+      rotY += velY;
+      rotX += velX;
+      velX *= 0.98;
     }
-});
+    requestAnimationFrame(draw);
+  }
+  draw();
 
-// Mobile menu toggle
-const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-const navLinks = document.getElementById('navLinks');
+  // Mouse / touch drag
+  canvas.addEventListener('mousedown', e => { dragging = true; lastMX = e.clientX; lastMY = e.clientY; });
+  window.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    rotY += (e.clientX - lastMX) * 0.008;
+    rotX += (e.clientY - lastMY) * 0.008;
+    lastMX = e.clientX; lastMY = e.clientY;
+  });
+  window.addEventListener('mouseup', () => dragging = false);
+  canvas.addEventListener('touchstart', e => { dragging = true; lastMX = e.touches[0].clientX; lastMY = e.touches[0].clientY; e.preventDefault(); }, { passive: false });
+  canvas.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    rotY += (e.touches[0].clientX - lastMX) * 0.01;
+    rotX += (e.touches[0].clientY - lastMY) * 0.01;
+    lastMX = e.touches[0].clientX; lastMY = e.touches[0].clientY;
+    e.preventDefault();
+  }, { passive: false });
+  canvas.addEventListener('touchend', () => dragging = false);
 
-if (mobileMenuToggle && navLinks) {
-    mobileMenuToggle.addEventListener('click', () => {
-        mobileMenuToggle.classList.toggle('active');
-        navLinks.classList.toggle('active');
-    });
-
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenuToggle.classList.remove('active');
-            navLinks.classList.remove('active');
-        });
-    });
-}
-
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-/* --------------------------------------------------------------------------
-   Animations
-   -------------------------------------------------------------------------- */
-// Fade in animation on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const fadeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.fade-in').forEach(el => {
-    fadeObserver.observe(el);
-});
-
-// Parallax effect for hero background
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const parallax = document.querySelector('.parallax-bg');
-    if (parallax) {
-        const speed = scrolled * 0.5;
-        parallax.style.transform = `translateY(${speed}px)`;
+  // Mouse proximity nudges spin speed
+  document.addEventListener('mousemove', e => {
+    if (dragging || prefersReducedMotion) return;
+    const rect = canvas.getBoundingClientRect();
+    const dx = (e.clientX - rect.left - rect.width / 2) / rect.width;
+    const dy = (e.clientY - rect.top - rect.height / 2) / rect.height;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist < 1.5) {
+      velY = baseVelY + dx * 0.004;
+      velX = dy * 0.003;
     }
-});
-
-// Add random movement to particles
-document.querySelectorAll('.particle').forEach((particle, index) => {
-    const randomDelay = Math.random() * 2;
-    const randomDuration = 4 + Math.random() * 4;
-    particle.style.animationDelay = randomDelay + 's';
-    particle.style.animationDuration = randomDuration + 's';
-    particle.style.top = Math.random() * 100 + '%';
-});
-
-/* --------------------------------------------------------------------------
-   Form Submission (for forms with submit event)
-   -------------------------------------------------------------------------- */
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        sendMessage();
-    });
-}
+  });
+})();

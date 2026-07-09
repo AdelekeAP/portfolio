@@ -1,340 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EchoMind - Voice-Powered Healthcare AI | Paul Aladenusi</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EchoMind — Voice-Powered Healthcare AI | Paul Adeleke Aladenusi</title>
 
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="EchoMind - Award-winning voice-powered document Q&A system for healthcare professionals. Built with RAG, OpenAI, and React.">
-    <meta name="author" content="Paul Adeleke Aladenusi">
+<!-- SEO -->
+<meta name="description" content="EchoMind — award-winning voice-powered document Q&A system for healthcare professionals. Built with RAG, OpenAI Whisper, FastAPI and React in under 24 hours at TIC Hackathon 2.0.">
+<meta name="author" content="Paul Adeleke Aladenusi">
+<meta name="robots" content="index, follow">
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="EchoMind - Voice-Powered Healthcare AI">
-    <meta property="og:description" content="Award-winning voice-powered document Q&A system built with RAG, OpenAI Whisper, and React in under 24 hours.">
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="EchoMind — Voice-Powered Healthcare AI">
+<meta property="og:description" content="Award-winning voice-powered document Q&A system built with RAG, OpenAI Whisper, and React in under 24 hours.">
+<meta property="og:site_name" content="Paul Aladenusi">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+<!-- Favicon (inline) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ctext x='16' y='24' font-family='Arial,sans-serif' font-size='22' font-weight='800' fill='%2360a5fa' text-anchor='middle'%3EL%3C/text%3E%3C/svg%3E">
 
-    <!-- External Stylesheet -->
-    <link rel="stylesheet" href="css/styles.css">
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Shared design tokens & base -->
+<link rel="stylesheet" href="css/styles.css">
+
+<!-- Detail-page components (built on the shared tokens) -->
+<style>
+.proj-hero {
+  padding: 180px 64px 96px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.proj-eyebrow {
+  display: inline-block; font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.12em; color: var(--accent); border: 1px solid var(--accent);
+  padding: 6px 14px; margin-bottom: 28px; text-transform: uppercase;
+}
+.proj-hero h1 {
+  font-family: var(--font-display); font-size: clamp(56px,9vw,120px);
+  font-weight: 800; letter-spacing: -0.03em; line-height: 0.9; margin-bottom: 28px;
+}
+.proj-hero .subtitle {
+  font-size: clamp(16px,1.8vw,20px); color: rgba(239,239,239,0.7);
+  max-width: 760px; line-height: 1.7; margin-bottom: 40px;
+}
+.hero-links { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.proj-section { padding: 100px 64px; border-bottom: 1px solid var(--border); }
+.proj-section.alt { background: var(--bg2); }
+.proj-section .section-title { margin-bottom: 32px; }
+.proj-copy { max-width: 820px; }
+.proj-copy p { font-size: 17px; color: rgba(239,239,239,0.7); line-height: 1.8; margin-bottom: 20px; }
+.proj-copy p strong { color: var(--text); }
+.section-subtitle { color: var(--muted); margin-top: -16px; margin-bottom: 8px; font-size: 15px; }
+
+.overview-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 24px; margin-top: 48px; }
+.overview-card { border: 1px solid var(--border); padding: 28px; background: var(--bg3); }
+.overview-card .label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; }
+.overview-card .value { font-family: var(--font-display); font-size: 26px; font-weight: 800; }
+
+.highlight-box { border: 1px solid var(--border); border-left: 2px solid var(--accent); padding: 28px 32px; margin-top: 28px; background: var(--bg3); }
+.highlight-box.problem { border-left-color: #f87171; }
+.highlight-box h3 { font-family: var(--font-display); font-size: 22px; font-weight: 700; margin-bottom: 14px; }
+.highlight-box ul { margin: 14px 0 0 20px; color: rgba(239,239,239,0.7); }
+.highlight-box li { margin-bottom: 8px; line-height: 1.6; }
+.highlight-box strong { color: var(--text); }
+
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 24px; margin-top: 48px; }
+.feature-card { border: 1px solid var(--border); padding: 32px; background: var(--bg3); transition: border-color 0.3s; }
+.feature-card:hover { border-color: var(--accent-border); }
+.feature-icon { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; }
+.feature-card h4 { font-family: var(--font-display); font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+.feature-card p { color: rgba(239,239,239,0.65); font-size: 15px; line-height: 1.7; }
+
+.screenshots-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(340px,1fr)); gap: 24px; margin-top: 40px; }
+.screenshot-card { border: 1px solid var(--border); overflow: hidden; background: var(--bg3); }
+.screenshot-card img { width: 100%; height: auto; display: block; border-bottom: 1px solid var(--border); }
+.screenshot-card .caption { font-family: var(--font-mono); font-size: 12px; color: var(--muted); padding: 14px 18px; letter-spacing: 0.03em; }
+
+.tech-category { margin-top: 36px; }
+.tech-category h4 { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; }
+.tech-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.tech-tag { font-family: var(--font-mono); font-size: 12px; color: var(--text); border: 1px solid var(--border); padding: 6px 14px; letter-spacing: 0.03em; transition: all 0.2s; }
+.tech-tag:hover { border-color: var(--accent-line); color: var(--accent); }
+
+.learning-item { display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--border); }
+.learning-item:last-child { border-bottom: none; }
+.learning-number { font-family: var(--font-display); font-size: 40px; font-weight: 800; color: var(--accent); line-height: 1; flex-shrink: 0; width: 56px; }
+.learning-content h4 { font-family: var(--font-display); font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+.learning-content p { color: rgba(239,239,239,0.65); font-size: 15px; line-height: 1.7; max-width: 760px; }
+
+.role-box { border: 1px solid var(--border); border-left: 2px solid var(--accent); padding: 32px; background: var(--bg3); }
+.role-box h3 { font-family: var(--font-display); font-size: 24px; font-weight: 800; margin-bottom: 16px; }
+.role-box p { color: rgba(239,239,239,0.7); }
+.role-box ul { margin: 16px 0 0 20px; color: rgba(239,239,239,0.7); }
+.role-box li { margin-bottom: 10px; line-height: 1.6; }
+
+.cta-section { text-align: center; padding: 120px 64px; }
+.cta-section h2 { font-family: var(--font-display); font-size: clamp(36px,5vw,64px); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 20px; }
+.cta-section p { color: var(--muted); max-width: 600px; margin: 0 auto 40px; font-size: 17px; }
+.cta-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+@media (max-width: 900px) {
+  .proj-hero { padding: 140px 28px 72px; }
+  .proj-section, .cta-section { padding: 72px 28px; }
+  .learning-number { width: 40px; font-size: 32px; }
+}
+</style>
 </head>
 <body>
-    <!-- Header with Navigation -->
-    <header>
-        <nav id="navbar" class="scrolled">
-            <div class="container">
-                <div class="nav-container">
-                    <a href="index.html" class="logo">Leke</a>
-                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                    </button>
-                    <ul class="nav-links" id="navLinks">
-                        <li><a href="index.html#home">Home</a></li>
-                        <li><a href="index.html#about">About</a></li>
-                        <li><a href="index.html#projects">Projects</a></li>
-                        <li><a href="index.html#experience">Experience</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
-                    </ul>
-                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                        <span class="icon sun-icon">☀️</span>
-                        <span class="icon moon-icon">🌙</span>
-                    </button>
-                </div>
-            </div>
-        </nav>
-    </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Project Hero Section -->
-        <section class="project-hero">
-            <div class="container">
-                <div class="hero-content fade-in">
-                    <div class="badge">TIC Hackathon 2.0 Winner</div>
-                    <h1>EchoMind</h1>
-                    <p class="subtitle">A full-stack voice-powered document Q&A system that enables healthcare professionals to interact with medical documents using natural voice conversation. Built with RAG, OpenAI Whisper, and React in under 24 hours.</p>
-                    <div class="hero-links">
-                        <a href="https://echo-mind-p83r.vercel.app" target="_blank" rel="noopener noreferrer" class="hero-btn primary">View Live Demo</a>
-                        <a href="index.html#contact" class="hero-btn secondary">Get In Touch</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- NAV (consistent with index) -->
+<nav id="nav" class="scrolled" aria-label="Primary">
+  <a class="nav-logo" href="index.html#home">leke.dev</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">about</a></li>
+    <li><a href="index.html#skills">skills</a></li>
+    <li><a href="index.html#projects">projects</a></li>
+    <li><a href="index.html#experience">experience</a></li>
+    <li><a href="index.html#contact">contact</a></li>
+  </ul>
+  <a class="nav-cta" href="mailto:aladenusiadeleke@gmail.com?subject=Resume%20Request">resume →</a>
+</nav>
 
-        <!-- Overview Section -->
-        <section class="fade-in">
-            <div class="container">
-                <h2 class="section-title">Project Overview</h2>
-                <div class="section-content">
-                    <p>EchoMind is an award-winning voice-powered document Q&A system developed during TIC Hackathon 2.0 (October 24-25, 2025). The application combines speech recognition, vector embeddings, and large language models (LLMs) to create an intelligent assistant that can understand, search, and answer questions about uploaded documents.</p>
-                    <p>Built with a focus on healthcare professionals, EchoMind allows users to upload medical documents (PDFs, DOCX, PPTX), ask questions using their voice, and receive spoken responses with source citations. The system uses Retrieval-Augmented Generation (RAG) to provide accurate, context-aware answers.</p>
-                </div>
+<main>
+  <!-- HERO -->
+  <header class="proj-hero">
+    <div class="proj-eyebrow reveal">🏆 TIC Hackathon 2.0 Winner</div>
+    <h1 class="reveal">EchoMind</h1>
+    <p class="subtitle reveal">A full-stack voice-powered document Q&amp;A system that lets healthcare professionals interact with medical documents through natural voice conversation. Built with RAG, OpenAI Whisper, and React in under 24 hours.</p>
+    <div class="hero-links reveal">
+      <a href="https://echo-mind-p83r.vercel.app" target="_blank" rel="noopener" class="btn-primary">View Live Demo →</a>
+      <a href="index.html#contact" class="btn-secondary">Get In Touch</a>
+    </div>
+  </header>
 
-                <div class="overview-grid">
-                    <article class="overview-card">
-                        <div class="label">Event</div>
-                        <div class="value">TIC Hackathon 2.0</div>
-                    </article>
-                    <article class="overview-card">
-                        <div class="label">Duration</div>
-                        <div class="value">24 Hours</div>
-                    </article>
-                    <article class="overview-card">
-                        <div class="label">Team Size</div>
-                        <div class="value">4 Developers</div>
-                    </article>
-                    <article class="overview-card">
-                        <div class="label">Result</div>
-                        <div class="value">1st Place</div>
-                    </article>
-                </div>
-            </div>
-        </section>
+  <!-- OVERVIEW -->
+  <section class="proj-section">
+    <div class="section-label reveal">// overview</div>
+    <h2 class="section-title reveal">Project Overview</h2>
+    <div class="proj-copy reveal">
+      <p>EchoMind is an award-winning voice-powered document Q&amp;A system developed during TIC Hackathon 2.0 (October 24–25, 2025). The application combines speech recognition, vector embeddings, and large language models to create an intelligent assistant that can understand, search, and answer questions about uploaded documents.</p>
+      <p>Built with a focus on healthcare professionals, EchoMind lets users upload medical documents (PDF, DOCX, PPTX), ask questions using their voice, and receive spoken responses with source citations. The system uses Retrieval-Augmented Generation (RAG) to provide accurate, context-aware answers.</p>
+    </div>
+    <div class="overview-grid stagger">
+      <article class="overview-card reveal"><div class="label">Event</div><div class="value">TIC Hackathon 2.0</div></article>
+      <article class="overview-card reveal"><div class="label">Duration</div><div class="value">24 Hours</div></article>
+      <article class="overview-card reveal"><div class="label">Team Size</div><div class="value">4 Developers</div></article>
+      <article class="overview-card reveal"><div class="label">Result</div><div class="value">1st Place</div></article>
+    </div>
+  </section>
 
-        <!-- Problem & Solution -->
-        <section class="fade-in" style="background: white;">
-            <div class="container">
-                <h2 class="section-title">The Problem We Solved</h2>
+  <!-- PROBLEM & SOLUTION -->
+  <section class="proj-section alt">
+    <div class="section-label reveal">// challenge</div>
+    <h2 class="section-title reveal">The Problem We Solved</h2>
+    <div class="highlight-box problem reveal">
+      <h3>Healthcare Information Access Challenges</h3>
+      <p>Healthcare professionals often need quick access to information buried within large documents. Traditional methods require:</p>
+      <ul>
+        <li>Manually searching through lengthy PDFs and medical records</li>
+        <li>Remembering which document contains specific information</li>
+        <li>Typing out queries while multitasking with patients</li>
+        <li>Reading through pages of text to find answers</li>
+      </ul>
+    </div>
+    <div class="highlight-box solution reveal">
+      <h3>Our Solution</h3>
+      <p>EchoMind addresses these pain points by providing:</p>
+      <ul>
+        <li><strong>Hands-free interaction:</strong> voice input/output allows querying while hands are occupied</li>
+        <li><strong>Semantic search:</strong> natural-language questions find relevant info automatically using RAG</li>
+        <li><strong>Contextual answers:</strong> the LLM synthesizes information into clear, conversational responses</li>
+        <li><strong>Source transparency:</strong> every answer includes citations showing exactly which documents were used</li>
+      </ul>
+    </div>
+  </section>
 
-                <div class="highlight-box problem">
-                    <h3>Healthcare Information Access Challenges</h3>
-                    <p>Healthcare professionals often need quick access to information buried within large documents. Traditional methods require:</p>
-                    <ul>
-                        <li>Manually searching through lengthy PDFs and medical records</li>
-                        <li>Remembering which document contains specific information</li>
-                        <li>Typing out queries while multitasking with patients</li>
-                        <li>Reading through pages of text to find answers</li>
-                    </ul>
-                </div>
+  <!-- FEATURES -->
+  <section class="proj-section">
+    <div class="section-label reveal">// capabilities</div>
+    <h2 class="section-title reveal">Key Features</h2>
+    <div class="features-grid stagger">
+      <article class="feature-card reveal"><div class="feature-icon">Voice</div><h4>Voice-First Interaction</h4><p>Record voice questions using the browser microphone with real-time transcription via OpenAI Whisper. Natural text-to-speech responses with auto-silence detection.</p></article>
+      <article class="feature-card reveal"><div class="feature-icon">Search</div><h4>RAG-Powered Search</h4><p>Semantic search using OpenAI embeddings (1536 dimensions) with a ChromaDB vector database. Smart text chunking with overlap for context preservation.</p></article>
+      <article class="feature-card reveal"><div class="feature-icon">Docs</div><h4>Multi-Format Support</h4><p>Upload PDFs, Word documents (.docx), and PowerPoint presentations (.pptx). Drag-and-drop interface supporting files up to 50MB.</p></article>
+      <article class="feature-card reveal"><div class="feature-icon">UI</div><h4>Animated Voice Orb</h4><p>Beautiful UI with 5 animated states: idle, session, listening, speaking, processing. Ripple effects and pulsing animations for visual feedback.</p></article>
+      <article class="feature-card reveal"><div class="feature-icon">Auth</div><h4>Secure Authentication</h4><p>JWT-based auth with Individual and Organization account types. Role-based access control (owner, admin, member) with password-strength validation.</p></article>
+      <article class="feature-card reveal"><div class="feature-icon">Modes</div><h4>Three Query Modes</h4><p>File Mode for document queries, Medical Knowledge for general questions, and Database Query for patient-records search.</p></article>
+    </div>
+  </section>
 
-                <div class="highlight-box solution">
-                    <h3>Our Solution</h3>
-                    <p>EchoMind addresses these pain points by providing:</p>
-                    <ul>
-                        <li><strong>Hands-free interaction:</strong> Voice input/output allows querying while hands are occupied</li>
-                        <li><strong>Semantic search:</strong> Natural language questions find relevant info automatically using RAG</li>
-                        <li><strong>Contextual answers:</strong> LLM synthesizes information into clear, conversational responses</li>
-                        <li><strong>Source transparency:</strong> Every answer includes citations showing exactly which documents were used</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+  <!-- SCREENSHOTS -->
+  <section class="proj-section alt">
+    <div class="section-label reveal">// interface</div>
+    <h2 class="section-title reveal">Screenshots</h2>
+    <p class="section-subtitle reveal">Visual overview of the EchoMind platform interface.</p>
+    <div class="screenshots-grid stagger">
+      <figure class="screenshot-card reveal"><img src="assets/images/echomind/Screenshot 2025-12-17 at 19.12.09.png" alt="EchoMind registration and onboarding screen" loading="lazy" decoding="async"><figcaption class="caption">Registration &amp; Onboarding</figcaption></figure>
+      <figure class="screenshot-card reveal"><img src="assets/images/echomind/Screenshot 2025-12-17 at 19.10.48.png" alt="EchoMind dashboard with voice orb and query modes" loading="lazy" decoding="async"><figcaption class="caption">Dashboard with Voice Orb &amp; Query Modes</figcaption></figure>
+      <figure class="screenshot-card reveal"><img src="assets/images/echomind/Screenshot 2025-12-17 at 19.11.37.png" alt="EchoMind AI chat with medical knowledge mode" loading="lazy" decoding="async"><figcaption class="caption">AI Chat with Medical Knowledge Mode</figcaption></figure>
+      <figure class="screenshot-card reveal"><img src="assets/images/echomind/Screenshot 2025-12-17 at 19.10.54.png" alt="EchoMind voice consultation interface" loading="lazy" decoding="async"><figcaption class="caption">Voice Consultation Interface</figcaption></figure>
+    </div>
+  </section>
 
-        <!-- Features -->
-        <section class="fade-in">
-            <div class="container">
-                <h2 class="section-title">Key Features</h2>
+  <!-- TECHNOLOGIES -->
+  <section class="proj-section">
+    <div class="section-label reveal">// stack</div>
+    <h2 class="section-title reveal">Technologies Used</h2>
+    <div class="tech-category reveal">
+      <h4>Backend</h4>
+      <div class="tech-grid">
+        <span class="tech-tag">Python 3.11</span><span class="tech-tag">FastAPI</span><span class="tech-tag">PostgreSQL</span><span class="tech-tag">ChromaDB</span><span class="tech-tag">SQLAlchemy</span><span class="tech-tag">LangChain</span>
+      </div>
+    </div>
+    <div class="tech-category reveal">
+      <h4>Frontend</h4>
+      <div class="tech-grid">
+        <span class="tech-tag">React 19</span><span class="tech-tag">Vite</span><span class="tech-tag">Tailwind CSS</span><span class="tech-tag">React Router</span><span class="tech-tag">Axios</span>
+      </div>
+    </div>
+    <div class="tech-category reveal">
+      <h4>AI &amp; APIs</h4>
+      <div class="tech-grid">
+        <span class="tech-tag">OpenAI Whisper (STT)</span><span class="tech-tag">OpenAI TTS</span><span class="tech-tag">OpenAI Embeddings</span><span class="tech-tag">Together AI (Llama 3.1)</span>
+      </div>
+    </div>
+    <div class="tech-category reveal">
+      <h4>Infrastructure</h4>
+      <div class="tech-grid">
+        <span class="tech-tag">Vercel</span><span class="tech-tag">Render</span><span class="tech-tag">JWT Auth</span><span class="tech-tag">Fernet Encryption</span>
+      </div>
+    </div>
+  </section>
 
-                <div class="features-grid">
-                    <article class="feature-card">
-                        <div class="feature-icon">Voice</div>
-                        <h4>Voice-First Interaction</h4>
-                        <p>Record voice questions using browser microphone with real-time transcription via OpenAI Whisper. Natural text-to-speech responses with auto-silence detection.</p>
-                    </article>
-                    <article class="feature-card">
-                        <div class="feature-icon">Search</div>
-                        <h4>RAG-Powered Search</h4>
-                        <p>Semantic search using OpenAI embeddings (1536 dimensions) with ChromaDB vector database. Smart text chunking with overlap for context preservation.</p>
-                    </article>
-                    <article class="feature-card">
-                        <div class="feature-icon">Docs</div>
-                        <h4>Multi-Format Support</h4>
-                        <p>Upload PDFs, Word documents (.docx), and PowerPoint presentations (.pptx). Drag-and-drop interface supporting files up to 50MB.</p>
-                    </article>
-                    <article class="feature-card">
-                        <div class="feature-icon">UI</div>
-                        <h4>Animated Voice Orb</h4>
-                        <p>Beautiful UI with 5 animated states: idle, session, listening, speaking, processing. Ripple effects and pulsing animations for visual feedback.</p>
-                    </article>
-                    <article class="feature-card">
-                        <div class="feature-icon">Auth</div>
-                        <h4>Secure Authentication</h4>
-                        <p>JWT-based auth with Individual and Organization account types. Role-based access control (owner, admin, member) with password strength validation.</p>
-                    </article>
-                    <article class="feature-card">
-                        <div class="feature-icon">Modes</div>
-                        <h4>Three Query Modes</h4>
-                        <p>File Mode for document queries, Medical Knowledge for general questions, and Database Query for patient records search.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
+  <!-- WHAT I LEARNED -->
+  <section class="proj-section alt">
+    <div class="section-label reveal">// takeaways</div>
+    <h2 class="section-title reveal">What I Learned</h2>
+    <article class="learning-item reveal"><div class="learning-number">1</div><div class="learning-content"><h4>Retrieval-Augmented Generation (RAG)</h4><p>Implementing vector embeddings for semantic search, chunking strategies with overlap for context preservation, and balancing retrieval precision with LLM context windows.</p></div></article>
+    <article class="learning-item reveal"><div class="learning-number">2</div><div class="learning-content"><h4>Voice Interface Development</h4><p>Integrating the browser MediaRecorder API for audio capture, working with OpenAI Whisper for accurate speech-to-text, implementing TTS with multiple voice options, and handling audio streaming in the browser.</p></div></article>
+    <article class="learning-item reveal"><div class="learning-number">3</div><div class="learning-content"><h4>Full-Stack Architecture Under Pressure</h4><p>Designing REST APIs with FastAPI, managing state between the React frontend and Python backend, implementing JWT authentication with refresh tokens, and handling file uploads and processing pipelines — all in 24 hours.</p></div></article>
+    <article class="learning-item reveal"><div class="learning-number">4</div><div class="learning-content"><h4>LLM Integration Patterns</h4><p>Prompt engineering for query refinement, two-pass systems for error correction, handling API rate limits and retries, and optimizing token usage and response quality.</p></div></article>
+    <article class="learning-item reveal"><div class="learning-number">5</div><div class="learning-content"><h4>Healthcare Domain Considerations</h4><p>Understanding compliance considerations, the importance of disclaimers, and how to present medical information responsibly without overstepping into diagnosis.</p></div></article>
+  </section>
 
-        <!-- Screenshots -->
-        <section class="screenshots-section fade-in">
-            <div class="container">
-                <h2 class="section-title">Screenshots</h2>
-                <p class="section-subtitle">Visual overview of the EchoMind platform interface.</p>
+  <!-- MY ROLE -->
+  <section class="proj-section">
+    <div class="section-label reveal">// contribution</div>
+    <h2 class="section-title reveal">My Role</h2>
+    <div class="role-box reveal">
+      <h3>Backend Developer &amp; Full-Stack Contributor</h3>
+      <p>As the backend developer in our 4-person team, I was responsible for building the core infrastructure that powers EchoMind:</p>
+      <ul>
+        <li>Designed and implemented the RESTful API architecture using FastAPI</li>
+        <li>Built the RAG pipeline with a ChromaDB vector database and OpenAI embeddings</li>
+        <li>Integrated OpenAI Whisper for speech-to-text and TTS for voice responses</li>
+        <li>Set up the PostgreSQL database schema with SQLAlchemy ORM</li>
+        <li>Implemented secure JWT authentication and role-based access control</li>
+        <li>Configured deployment on Render with managed PostgreSQL</li>
+        <li>Collaborated with the frontend team on API contracts and data flow</li>
+      </ul>
+    </div>
+  </section>
 
-                <div class="screenshots-grid">
-                    <figure class="screenshot-card">
-                        <img src="assets/images/echomind/Screenshot 2025-12-17 at 19.12.09.png" alt="EchoMind Registration Page" loading="lazy">
-                        <figcaption class="caption">Registration & Onboarding</figcaption>
-                    </figure>
-                    <figure class="screenshot-card">
-                        <img src="assets/images/echomind/Screenshot 2025-12-17 at 19.10.48.png" alt="EchoMind Dashboard" loading="lazy">
-                        <figcaption class="caption">Dashboard with Voice Orb & Query Modes</figcaption>
-                    </figure>
-                    <figure class="screenshot-card">
-                        <img src="assets/images/echomind/Screenshot 2025-12-17 at 19.11.37.png" alt="EchoMind Chat Interface" loading="lazy">
-                        <figcaption class="caption">AI Chat with Medical Knowledge Mode</figcaption>
-                    </figure>
-                    <figure class="screenshot-card">
-                        <img src="assets/images/echomind/Screenshot 2025-12-17 at 19.10.54.png" alt="EchoMind Voice Consultation" loading="lazy">
-                        <figcaption class="caption">Voice Consultation Interface</figcaption>
-                    </figure>
-                </div>
-            </div>
-        </section>
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2 class="reveal">Interested in Working Together?</h2>
+    <p class="reveal">I'm always excited to discuss new projects and opportunities in AI, healthcare tech, or full-stack development.</p>
+    <div class="cta-buttons reveal">
+      <a href="https://echo-mind-p83r.vercel.app" target="_blank" rel="noopener" class="btn-primary">Try EchoMind Live →</a>
+      <a href="index.html#contact" class="btn-secondary">Get In Touch</a>
+    </div>
+  </section>
+</main>
 
-        <!-- Technologies -->
-        <section class="tech-section fade-in">
-            <div class="container">
-                <h2 class="section-title">Technologies Used</h2>
+<footer>
+  <span>© 2026 Paul Adeleke Aladenusi</span>
+  <span class="footer-tag">Built with precision.</span>
+</footer>
 
-                <div class="tech-category">
-                    <h4>Backend</h4>
-                    <div class="tech-grid">
-                        <span class="tech-tag">Python 3.11</span>
-                        <span class="tech-tag">FastAPI</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                        <span class="tech-tag">ChromaDB</span>
-                        <span class="tech-tag">SQLAlchemy</span>
-                        <span class="tech-tag">LangChain</span>
-                    </div>
-                </div>
-
-                <div class="tech-category">
-                    <h4>Frontend</h4>
-                    <div class="tech-grid">
-                        <span class="tech-tag">React 19</span>
-                        <span class="tech-tag">Vite</span>
-                        <span class="tech-tag">Tailwind CSS</span>
-                        <span class="tech-tag">React Router</span>
-                        <span class="tech-tag">Axios</span>
-                    </div>
-                </div>
-
-                <div class="tech-category">
-                    <h4>AI & APIs</h4>
-                    <div class="tech-grid">
-                        <span class="tech-tag">OpenAI Whisper (STT)</span>
-                        <span class="tech-tag">OpenAI TTS</span>
-                        <span class="tech-tag">OpenAI Embeddings</span>
-                        <span class="tech-tag">Together AI (Llama 3.1)</span>
-                    </div>
-                </div>
-
-                <div class="tech-category">
-                    <h4>Infrastructure</h4>
-                    <div class="tech-grid">
-                        <span class="tech-tag">Vercel</span>
-                        <span class="tech-tag">Render</span>
-                        <span class="tech-tag">JWT Auth</span>
-                        <span class="tech-tag">Fernet Encryption</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- What I Learned -->
-        <section class="fade-in" style="background: white;">
-            <div class="container">
-                <h2 class="section-title">What I Learned</h2>
-
-                <article class="learning-item">
-                    <div class="learning-number">1</div>
-                    <div class="learning-content">
-                        <h4>Retrieval-Augmented Generation (RAG)</h4>
-                        <p>Implementing vector embeddings for semantic search, chunking strategies with overlap for context preservation, and balancing retrieval precision with LLM context windows.</p>
-                    </div>
-                </article>
-
-                <article class="learning-item">
-                    <div class="learning-number">2</div>
-                    <div class="learning-content">
-                        <h4>Voice Interface Development</h4>
-                        <p>Integrating browser MediaRecorder API for audio capture, working with OpenAI Whisper for accurate speech-to-text, implementing TTS with multiple voice options, and handling audio streaming in the browser.</p>
-                    </div>
-                </article>
-
-                <article class="learning-item">
-                    <div class="learning-number">3</div>
-                    <div class="learning-content">
-                        <h4>Full-Stack Architecture Under Pressure</h4>
-                        <p>Designing REST APIs with FastAPI, managing state between React frontend and Python backend, implementing JWT authentication with refresh tokens, and handling file uploads and processing pipelines - all in 24 hours.</p>
-                    </div>
-                </article>
-
-                <article class="learning-item">
-                    <div class="learning-number">4</div>
-                    <div class="learning-content">
-                        <h4>LLM Integration Patterns</h4>
-                        <p>Prompt engineering for query refinement, two-pass systems for error correction, handling API rate limits and retries, and optimizing token usage and response quality.</p>
-                    </div>
-                </article>
-
-                <article class="learning-item">
-                    <div class="learning-number">5</div>
-                    <div class="learning-content">
-                        <h4>Healthcare Domain Considerations</h4>
-                        <p>Understanding compliance considerations, the importance of disclaimers, and how to present medical information responsibly without overstepping into diagnosis.</p>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <!-- My Role -->
-        <section class="fade-in">
-            <div class="container">
-                <h2 class="section-title">My Role</h2>
-
-                <div class="role-box">
-                    <h3>Backend Developer & Full-Stack Contributor</h3>
-                    <p>As the backend developer in our 4-person team, I was responsible for building the core infrastructure that powers EchoMind:</p>
-                    <ul>
-                        <li>Designed and implemented RESTful API architecture using FastAPI</li>
-                        <li>Built the RAG pipeline with ChromaDB vector database and OpenAI embeddings</li>
-                        <li>Integrated OpenAI Whisper for speech-to-text and TTS for voice responses</li>
-                        <li>Set up PostgreSQL database schema with SQLAlchemy ORM</li>
-                        <li>Implemented secure JWT authentication and role-based access control</li>
-                        <li>Configured deployment on Render with managed PostgreSQL</li>
-                        <li>Collaborated with frontend team on API contracts and data flow</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="cta-section fade-in">
-            <div class="container">
-                <h2>Interested in Working Together?</h2>
-                <p>I'm always excited to discuss new projects and opportunities in AI, healthcare tech, or full-stack development.</p>
-                <div class="cta-buttons">
-                    <a href="https://echo-mind-p83r.vercel.app" target="_blank" rel="noopener noreferrer" class="cta-btn primary">Try EchoMind Live</a>
-                    <a href="index.html#contact" class="cta-btn secondary">Get In Touch</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Paul Adeleke Aladenusi. All rights reserved.</p>
-            <p style="margin-top: 0.5rem;">
-                <a href="index.html">Home</a> &nbsp;|&nbsp;
-                <a href="index.html#projects">Projects</a> &nbsp;|&nbsp;
-                <a href="index.html#contact">Contact</a>
-            </p>
-        </div>
-    </footer>
-
-    <!-- External JavaScript -->
-    <script src="js/main.js"></script>
+<script src="js/main.js" defer></script>
 </body>
 </html>
