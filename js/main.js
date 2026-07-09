@@ -112,6 +112,17 @@ document.querySelectorAll('.project-item').forEach(item => {
   item.addEventListener('mousemove', positionPreview);
 });
 
+// Warm the cache on load: preload every project image so the first hover is instant.
+// Refs are kept in an array so the requests aren't garbage-collected before they finish.
+const preloadedImages = [];
+document.querySelectorAll('.project-item[data-img]').forEach(item => {
+  const src = item.dataset.img;
+  if (!src) return;
+  const pre = new Image();
+  pre.src = src;
+  preloadedImages.push(pre);
+});
+
 /* ─── 3D SKILLS GLOBE ──────────────────────────────────────────────────── */
 (function () {
   const canvas = document.getElementById('globe-canvas');
