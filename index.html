@@ -1,487 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paul Adeleke Aladenusi (Leke) - Tech & Culture</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paul Adeleke Aladenusi (Leke) — Full-Stack Engineer</title>
 
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Paul Adeleke Aladenusi - Computer Science undergraduate at Pan-Atlantic University. Frontend Developer, Risk Consulting Intern at EY. Building innovative tech solutions with React, JavaScript, and Python.">
-    <meta name="keywords" content="Paul Aladenusi, Leke, Computer Science, Frontend Developer, React, JavaScript, TypeScript, Portfolio, Nigeria Tech, EY Intern, Pan-Atlantic University, Web Developer">
-    <meta name="author" content="Paul Adeleke Aladenusi">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://paulaladenusi.com/">
+<!-- SEO -->
+<meta name="description" content="Paul Adeleke Aladenusi (Leke) — full-stack engineer with a backend focus. Django/DRF, FastAPI, React & React Native. Building fintech, edtech & SaaS products from zero to one. Based in Lagos & London.">
+<meta name="keywords" content="Paul Aladenusi, Leke, Full-Stack Engineer, Backend Engineer, Django, FastAPI, React, React Native, PostgreSQL, Portfolio, Lagos, London">
+<meta name="author" content="Paul Adeleke Aladenusi">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://paulaladenusi.com/">
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://paulaladenusi.com/">
-    <meta property="og:title" content="Paul Adeleke Aladenusi (Leke) - Tech & Culture">
-    <meta property="og:description" content="Computer Science undergraduate crafting digital experiences at the intersection of tech innovation and cultural authenticity. First Class Honours student building the future.">
-    <meta property="og:image" content="https://paulaladenusi.com/assets/images/og-image.png">
-    <meta property="og:site_name" content="Paul Aladenusi Portfolio">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://paulaladenusi.com/">
+<meta property="og:title" content="Paul Adeleke Aladenusi (Leke) — Full-Stack Engineer">
+<meta property="og:description" content="Full-stack engineer with a backend focus. Building fintech, edtech & SaaS products from zero to one with Django, FastAPI, React & React Native.">
+<meta property="og:site_name" content="Paul Aladenusi">
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://paulaladenusi.com/">
-    <meta property="twitter:title" content="Paul Adeleke Aladenusi (Leke) - Tech & Culture">
-    <meta property="twitter:description" content="Computer Science undergraduate crafting digital experiences at the intersection of tech innovation and cultural authenticity.">
-    <meta property="twitter:image" content="https://paulaladenusi.com/assets/images/og-image.png">
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:title" content="Paul Adeleke Aladenusi (Leke) — Full-Stack Engineer">
+<meta property="twitter:description" content="Full-stack engineer with a backend focus. Building fintech, edtech & SaaS products from zero to one.">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+<!-- Favicon (inline) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ctext x='16' y='24' font-family='Arial,sans-serif' font-size='22' font-weight='800' fill='%2360a5fa' text-anchor='middle'%3EL%3C/text%3E%3C/svg%3E">
 
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <!-- External Stylesheet -->
-    <link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Header with Navigation -->
-    <header>
-        <nav id="navbar">
-            <div class="container">
-                <div class="nav-container">
-                    <div class="logo">Leke</div>
-                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                    </button>
-                    <ul class="nav-links" id="navLinks">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#experience">Experience</a></li>
-                        <li><a href="#certifications">Certs</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                        <span class="icon sun-icon">☀️</span>
-                        <span class="icon moon-icon">🌙</span>
-                    </button>
-                </div>
-            </div>
-        </nav>
-    </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="parallax-bg"></div>
-            <div class="container">
-                <div class="hero-content fade-in">
-                    <h1>Paul Adeleke Aladenusi</h1>
-                    <div class="nickname">(Leke)</div>
-                    <p class="tagline">Full-stack engineer with a backend focus — building fintech, edtech, and SaaS products from zero to one. I design and ship robust APIs, data pipelines, and server-side architecture using Django and FastAPI, with React and React Native on the frontend.</p>
-                    <div class="hero-buttons">
-                        <a href="#projects" class="cta-button magnetic">View My Work</a>
-                        <a href="mailto:aladenusiadeleke@gmail.com?subject=Resume Request&body=Hi Leke, I'd like to request your resume. Thanks!" class="cta-button cta-button-outline magnetic">Request Resume</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- NAV -->
+<nav id="nav" aria-label="Primary">
+  <a class="nav-logo" href="#home">leke.dev</a>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+  <a class="nav-cta" href="mailto:aladenusiadeleke@gmail.com?subject=Resume%20Request">resume →</a>
+</nav>
 
-        <!-- Custom Cursor -->
-        <div class="cursor"></div>
-        <div class="cursor-follower"></div>
+<!-- HERO -->
+<header id="home">
+  <div class="hero-eyebrow">// full-stack engineer — lagos &amp; london</div>
+  <h1 class="hero-name">
+    <span class="line"><span>PAUL ADELEKE</span></span>
+    <span class="line"><span>ALADENUSI</span></span>
+  </h1>
+  <div class="hero-bottom">
+    <p class="hero-role">
+      <strong>Leke</strong> — <span id="role-text">Backend-Focused Engineer</span><br>
+      Building fintech, edtech &amp; SaaS products from zero to one.<br>
+      Django · FastAPI · React · React Native · PostgreSQL · Clerk
+    </p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#projects">View Work ↓</a>
+      <a class="btn-secondary" href="mailto:aladenusiadeleke@gmail.com?subject=Resume%20Request">Request Resume →</a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <span>scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</header>
 
-        <!-- Cursor Trails -->
-        <div class="cursor-trail" id="trail-1"></div>
-        <div class="cursor-trail" id="trail-2"></div>
-        <div class="cursor-trail" id="trail-3"></div>
-        <div class="cursor-trail" id="trail-4"></div>
-        <div class="cursor-trail" id="trail-5"></div>
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label reveal">// 01 — about</div>
+  <h2 class="section-title reveal">Who I Am</h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm a <strong>full-stack engineer with a backend focus</strong>, currently a Senior Developer at Benmore Technologies where I own end-to-end development across four concurrent production products in edtech, fintech, property-tech, and ERP.</p>
+      <p>My stack spans <strong>Django/DRF &amp; FastAPI</strong> backends, <strong>React &amp; React Native</strong> frontends, with Stripe &amp; Plaid payments and Clerk authentication. I'm a <strong>developer first</strong> — I lean on an AI-augmented workflow with Claude Code to ship faster, but the engineering judgment is mine.</p>
+      <p>Previously interned at <strong>Ernst &amp; Young (Digital Risk)</strong> and co-founded UniOrdering — a campus delivery platform serving 1,000+ students. Graduated with a <strong>First-Class degree (4.75/5.0 GPA)</strong> from Pan-Atlantic University.</p>
+      <div class="about-stats stagger">
+        <div class="stat reveal"><div class="stat-num">4.75</div><div class="stat-label">First Class GPA</div></div>
+        <div class="stat reveal"><div class="stat-num">4</div><div class="stat-label">Production Products</div></div>
+        <div class="stat reveal"><div class="stat-num">1K+</div><div class="stat-label">Students Served</div></div>
+        <div class="stat reveal"><div class="stat-num">700+</div><div class="stat-label">AI Assistant Users</div></div>
+      </div>
+    </div>
+    <div class="code-block reveal" aria-hidden="true">
+      <div class="code-top"><span class="dot" style="background:#ff5f56"></span><span class="dot" style="background:#ffbd2e"></span><span class="dot" style="background:#27c93f"></span></div>
+      <code id="code-display">
+<span class="code-line"><span class="c-purple">const</span> <span class="c-blue">leke</span> <span class="c-white">= {</span></span>
+<span class="code-line">&nbsp;&nbsp;<span class="c-amber">name</span><span class="c-white">:</span> <span class="c-green">"Paul Adeleke Aladenusi"</span><span class="c-white">,</span></span>
+<span class="code-line">&nbsp;&nbsp;<span class="c-amber">alias</span><span class="c-white">:</span> <span class="c-green">"Leke"</span><span class="c-white">,</span></span>
+<span class="code-line">&nbsp;&nbsp;<span class="c-amber">focus</span><span class="c-white">:</span> <span class="c-green">"Full-Stack / Backend"</span><span class="c-white">,</span></span>
+<span class="code-line">&nbsp;&nbsp;<span class="c-amber">stack</span><span class="c-white">: [</span></span>
+<span class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-green">"Django"</span><span class="c-white">,</span> <span class="c-green">"FastAPI"</span><span class="c-white">,</span></span>
+<span class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-green">"React"</span><span class="c-white">,</span> <span class="c-green">"React Native"</span><span class="c-white">,</span></span>
+<span class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-green">"PostgreSQL"</span><span class="c-white">,</span> <span class="c-green">"Clerk"</span><span class="c-white">,</span> <span class="c-green">"Docker"</span></span>
+<span class="code-line">&nbsp;&nbsp;<span class="c-white">],</span></span>
+<span class="code-line">&nbsp;&nbsp;<span class="c-amber">currently</span><span class="c-white">:</span> <span class="c-green">"Benmore Technologies"</span><span class="c-white">,</span></span>
+<span class="code-line">&nbsp;&nbsp;<span class="c-amber">seeking</span><span class="c-white">:</span> <span class="c-green">"Next great challenge"</span></span>
+<span class="code-line"><span class="c-white">};</span><span class="cursor"></span></span>
+      </code>
+    </div>
+  </div>
+</section>
 
-        <!-- Floating Particles -->
-        <div class="floating-particles">
-            <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
-            <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
-            <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
-            <div class="particle" style="left: 40%; animation-delay: 3s;"></div>
-            <div class="particle" style="left: 50%; animation-delay: 4s;"></div>
-            <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
-            <div class="particle" style="left: 70%; animation-delay: 0.5s;"></div>
-            <div class="particle" style="left: 80%; animation-delay: 1.5s;"></div>
-            <div class="particle" style="left: 90%; animation-delay: 2.5s;"></div>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label reveal">// 02 — technologies</div>
+  <h2 class="section-title reveal">The Stack</h2>
+  <div class="globe-container reveal">
+    <canvas id="globe-canvas" aria-label="Interactive rotating globe of the technologies I work with" role="img"></canvas>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects-header">
+    <div>
+      <div class="section-label reveal">// 03 — work</div>
+      <h2 class="section-title reveal">Selected Projects</h2>
+    </div>
+  </div>
+
+  <div class="project-list" id="project-list">
+
+    <a class="project-item reveal" data-img="assets/images/projects/shadowimg.png" href="https://shadow-academic.up.railway.app/" target="_blank" rel="noopener">
+      <div class="project-num">_01</div>
+      <div class="project-info">
+        <div class="project-title">Shadow</div>
+        <div class="project-sub">AI-Powered Academic Achievement System — GPT-4 study coaching &amp; goal tracking</div>
+        <div class="project-tags">
+          <span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">PostgreSQL</span><span class="tag">GPT-4</span><span class="tag">Docker</span><span class="tag">Redis</span>
         </div>
+      </div>
+      <div class="project-arrow" aria-hidden="true">↗</div>
+    </a>
 
-        <!-- About Section -->
-        <section id="about">
-            <div class="container">
-                <div class="fade-in">
-                    <h2 class="section-title">About Me</h2>
-                    <p class="section-subtitle">Passionate about technology, driven by creativity, and deeply rooted in culture</p>
-
-                    <div class="about-grid">
-                        <div class="about-image">LA</div>
-                        <div class="about-content">
-                            <h3>Backend-Focused Full-Stack Engineer</h3>
-                            <p>I'm a full-stack engineer with a backend focus. I specialise in designing and building APIs, database architecture, and server-side systems. Currently a Senior Developer at Benmore Technologies, where I own end-to-end development across four concurrent production products — building Django/DRF and FastAPI backends, React frontends, React Native mobile apps, and payment integrations with Stripe, Plaid, and Clerk. I operate with a deeply integrated AI-first workflow using Claude Code for planning, implementation, and automated PR review. Previously interned at Ernst & Young (Digital Risk) and co-founded UniOrdering, a campus delivery platform serving 1,000+ students.</p>
-
-                            <div class="terminal">
-                                const leke = { skills: ["JavaScript", "Python", "React", "Problem Solving"], passion: "Building meaningful tech" };<span class="terminal-cursor">|</span>
-                            </div>
-
-                            <div class="skills-section">
-                                <h4>Core Technologies</h4>
-                                <div class="skills-container">
-                                    <span class="skill-bubble">Django/DRF</span>
-                                    <span class="skill-bubble">PostgreSQL</span>
-                                    <span class="skill-bubble">React</span>
-                                    <span class="skill-bubble">TypeScript</span>
-                                    <span class="skill-bubble">React Native</span>
-                                    <span class="skill-bubble">Stripe/Plaid</span>
-                                    <span class="skill-bubble">Claude Code</span>
-                                    <span class="skill-bubble">Docker</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="stats">
-                        <div class="stat">
-                            <span class="stat-number">4.73/5.0</span>
-                            <div class="stat-label">First Class GPA</div>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">4</span>
-                            <div class="stat-label">Production Products</div>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">1,000+</span>
-                            <div class="stat-label">Students Served</div>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">700+</span>
-                            <div class="stat-label">AI Assistant Users</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="projects">
-            <div class="container">
-                <div class="fade-in">
-                    <h2 class="section-title">Featured Projects</h2>
-                    <p class="section-subtitle">Showcasing solutions that blend technical precision with user-centered design</p>
-
-                    <div class="projects-grid">
-                        <a href="https://shadow-academic.up.railway.app/" target="_blank" rel="noopener noreferrer" class="project-card-link">
-                            <article class="project-card">
-                                <div class="project-image">
-                                    <img src="assets/images/projects/shadowimg.png" alt="Shadow Academic Platform Screenshot" loading="lazy">
-                                </div>
-                                <div class="project-content">
-                                    <div class="project-badge">Final Year Project</div>
-                                    <h3 class="project-title">Shadow — AI-Powered Academic Achievement System</h3>
-                                    <p class="project-description">A goal-driven academic platform that reverse-engineers what students need to achieve their target CGPA. Features GPT-4 powered study coaching, mood-aware task prioritization using NLP sentiment analysis, multi-source content curation (YouTube, Reddit, Google), AI-generated quizzes and practice exercises, and statistical effectiveness tracking. Full-stack: FastAPI, React, PostgreSQL, Redis, Docker Compose — with 80+ API endpoints, JWT auth with refresh token rotation, and CI/CD via GitHub Actions.</p>
-                                    <div class="tech-stack">
-                                        <span class="tech-tag">FastAPI</span>
-                                        <span class="tech-tag">React</span>
-                                        <span class="tech-tag">PostgreSQL</span>
-                                        <span class="tech-tag">GPT-4</span>
-                                        <span class="tech-tag">Docker</span>
-                                        <span class="tech-tag">Redis</span>
-                                    </div>
-                                    <div class="project-links">
-                                        <span class="project-link">View Live Platform</span>
-                                    </div>
-                                    <p class="project-note">*Demo login — demo.user@gmail.com / Demouser1*</p>
-                                </div>
-                            </article>
-                        </a>
-
-                        <article class="project-card" onclick="showRoyalAcademyInfo()">
-                            <div class="project-image">Royal Academy</div>
-                            <div class="project-content">
-                                <h3 class="project-title">Royal Academy — EdTech Platform</h3>
-                                <p class="project-description">Full-stack educational platform built with Django and React. Implemented complete Stripe payment lifecycle, activity management system with admin tooling, and student video player. 649 passing tests at 81% coverage with CI/CD running against real PostgreSQL.</p>
-                                <div class="tech-stack">
-                                    <span class="tech-tag">Django</span>
-                                    <span class="tech-tag">DRF</span>
-                                    <span class="tech-tag">React</span>
-                                    <span class="tech-tag">Stripe</span>
-                                    <span class="tech-tag">PostgreSQL</span>
-                                </div>
-                                <div class="project-links">
-                                    <span class="project-link">View Details</span>
-                                </div>
-                                <p class="project-note">*Production platform — code not publicly available*</p>
-                            </div>
-                        </article>
-
-                        <article class="project-card" onclick="showFomoFiInfo()">
-                            <div class="project-image">Fomo-Fi</div>
-                            <div class="project-content">
-                                <h3 class="project-title">Fomo-Fi — Personal Finance App</h3>
-                                <p class="project-description">Mobile-first personal finance app with Plaid bank connection, Stripe subscription billing, and Clerk authentication. Monorepo architecture with React Native/Expo frontend and Django backend. Built from zero with Claude Code as core development tool.</p>
-                                <div class="tech-stack">
-                                    <span class="tech-tag">React Native</span>
-                                    <span class="tech-tag">Django</span>
-                                    <span class="tech-tag">Plaid</span>
-                                    <span class="tech-tag">Stripe</span>
-                                    <span class="tech-tag">Clerk</span>
-                                </div>
-                                <div class="project-links">
-                                    <span class="project-link">View Details</span>
-                                </div>
-                                <p class="project-note">*In active development — launching mid-2026*</p>
-                            </div>
-                        </article>
-
-                        <a href="https://uniordering.com" target="_blank" class="project-card-link">
-                            <article class="project-card">
-                                <div class="project-image">
-                                    <img src="assets/images/projects/uniOrderingimg.png" alt="Uni Ordering Platform Screenshot" loading="lazy">
-                                </div>
-                                <div class="project-content">
-                                    <h3 class="project-title">Uni Ordering Platform</h3>
-                                    <p class="project-description">A comprehensive food-ordering platform serving 1,000+ university students, handling 30-40 daily orders. Led frontend development with responsive UI, boosting adoption and order efficiency.</p>
-                                    <div class="tech-stack">
-                                        <span class="tech-tag">HTML5</span>
-                                        <span class="tech-tag">Tailwind CSS</span>
-                                        <span class="tech-tag">JavaScript</span>
-                                    </div>
-                                    <div class="project-links">
-                                        <span class="project-link">Visit Live Platform</span>
-                                    </div>
-                                </div>
-                            </article>
-                        </a>
-
-                        <article class="project-card" onclick="showAIDemo()">
-                            <div class="project-image">
-                                <img src="assets/images/projects/pauknowledgebaseimg.png" alt="PAU Knowledge Assistant Screenshot" loading="lazy">
-                            </div>
-                            <div class="project-content">
-                                <h3 class="project-title">PAU Knowledge Assistant</h3>
-                                <p class="project-description">AI-powered assistant built with Microsoft Copilot Studio that provides 700+ students and staff instant access to policies, HR guidelines, and academic procedures. Designed and structured comprehensive knowledge base.</p>
-                                <div class="tech-stack">
-                                    <span class="tech-tag">Microsoft Copilot</span>
-                                    <span class="tech-tag">Markdown</span>
-                                    <span class="tech-tag">Knowledge Base</span>
-                                    <span class="tech-tag">AI Integration</span>
-                                </div>
-                                <div class="project-links">
-                                    <span class="project-link">View Demo</span>
-                                </div>
-                                <p class="project-note">*Available exclusively for Pan-Atlantic University students and staff</p>
-                            </div>
-                        </article>
-
-                        <article class="project-card" onclick="showEagleInfo()">
-                            <div class="project-image">Eagle Vessel Tracker</div>
-                            <div class="project-content">
-                                <h3 class="project-title">Eagle - Vessel Tracking System</h3>
-                                <p class="project-description">Vessel-tracking solution for Keystone Bank Nigeria to monitor bank-owned vessels, integrating AIS data. Designed database schema for ship information, routes, and live tracking for risk assessment.</p>
-                                <div class="tech-stack">
-                                    <span class="tech-tag">Database Design</span>
-                                    <span class="tech-tag">API Integration</span>
-                                    <span class="tech-tag">AIS Data</span>
-                                    <span class="tech-tag">Risk Management</span>
-                                </div>
-                                <div class="project-links">
-                                    <span class="project-link">View Case Study</span>
-                                </div>
-                                <p class="project-note">*Internal banking tool - Code repository not publicly available</p>
-                            </div>
-                        </article>
-
-                        <a href="project-echomind.html" class="project-card-link">
-                            <article class="project-card project-card-featured">
-                                <div class="project-image project-image-featured">
-                                    <img src="assets/images/echomind/Screenshot 2025-12-17 at 19.10.48.png" alt="EchoMind Healthcare AI Screenshot" loading="lazy">
-                                </div>
-                                <div class="project-content">
-                                    <div class="project-badge">TIC Hackathon 2.0 Winner</div>
-                                    <h3 class="project-title">EchoMind - Voice-Powered Healthcare AI</h3>
-                                    <p class="project-description">Award-winning voice-powered document Q&A system for healthcare professionals. Built with RAG, OpenAI Whisper, and React in under 24 hours at TIC Hackathon 2.0.</p>
-                                    <div class="tech-stack">
-                                        <span class="tech-tag">Python</span>
-                                        <span class="tech-tag">FastAPI</span>
-                                        <span class="tech-tag">React</span>
-                                        <span class="tech-tag">OpenAI</span>
-                                        <span class="tech-tag">RAG</span>
-                                    </div>
-                                    <div class="project-links">
-                                        <span class="project-link">View Full Case Study</span>
-                                    </div>
-                                </div>
-                            </article>
-                        </a>
-
-                        <article class="project-card project-card-secondary" onclick="showEchoPayInfo()">
-                            <div class="project-image project-image-secondary">
-                                <img src="assets/images/projects/echoPayimg.png" alt="EchoPay Banking Platform Screenshot" loading="lazy">
-                            </div>
-                            <div class="project-content">
-                                <div class="project-badge project-badge-secondary">TIC Hackathon 2.0 Winner</div>
-                                <h3 class="project-title">EchoPay - Intelligent Banking Platform</h3>
-                                <p class="project-description">Innovative fintech solution reimagining digital banking experience. Built in under 24 hours with focus on security, accessibility, and user experience. AI-enhanced platform addressing modern financial transaction challenges.</p>
-                                <div class="tech-stack">
-                                    <span class="tech-tag">Python</span>
-                                    <span class="tech-tag">React</span>
-                                    <span class="tech-tag">AI/ML</span>
-                                    <span class="tech-tag">Security</span>
-                                    <span class="tech-tag">Fintech</span>
-                                </div>
-                                <div class="project-links">
-                                    <span class="project-link">View Details</span>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience">
-            <div class="container">
-                <div class="fade-in">
-                    <h2 class="section-title">Professional Journey</h2>
-                    <p class="section-subtitle">Building expertise through diverse experiences in consulting, fintech, and entrepreneurship</p>
-
-                    <div class="experience-timeline">
-                        <article class="timeline-item">
-                            <div class="timeline-content">
-                                <div class="timeline-date">Dec 2025 - Present</div>
-                                <h3 class="timeline-title">Senior Full-Stack & Mobile Developer (Contract)</h3>
-                                <div class="timeline-company">Benmore Technologies</div>
-                                <p class="timeline-description">Own end-to-end development across four concurrent production products (edtech, fintech, property-tech, ERP). Build Django/DRF backends, React frontends, and React Native mobile apps. Integrated Stripe payment lifecycle (checkout, webhooks, customer portal), Plaid bank connection, and Clerk auth. Use Claude Code as a core development tool — Opus for planning, Sonnet for execution, CLAUDE.md for persistent project context, and Claude Bot for automated PR review. Maintain CI/CD pipelines with GitHub Actions, Vercel, and Sentry. Codebase at 649 passing tests with 81% coverage.</p>
-                            </div>
-                        </article>
-
-                        <article class="timeline-item">
-                            <div class="timeline-content">
-                                <div class="timeline-date">July 2025 - September 2025</div>
-                                <h3 class="timeline-title">Risk Consulting Intern, Digital Risk</h3>
-                                <div class="timeline-company">Ernst & Young (EY)</div>
-                                <p class="timeline-description">Assisted in Enterprise Level Control (ELC) reviews for energy & financial clients, improving accuracy of risk assessments. Conducted IT control testing (change, access, backup), with findings adopted in client compliance evaluations.</p>
-                            </div>
-                        </article>
-
-                        <article class="timeline-item">
-                            <div class="timeline-content">
-                                <div class="timeline-date">January 2025 - Present</div>
-                                <h3 class="timeline-title">Co-Founder & Frontend Developer</h3>
-                                <div class="timeline-company">Uni Ordering (Startup)</div>
-                                <p class="timeline-description">Built a food-ordering platform serving 1,000+ students, handling 30-40 daily orders. Led frontend development with responsive UI, boosting adoption and order efficiency. Oversaw operations and product design, merging technical execution with business decision-making.</p>
-                            </div>
-                        </article>
-
-                        <article class="timeline-item">
-                            <div class="timeline-content">
-                                <div class="timeline-date">July 2024 - September 2024</div>
-                                <h3 class="timeline-title">Frontend Development Intern</h3>
-                                <div class="timeline-company">Unyte Africa</div>
-                                <p class="timeline-description">Developed scalable React interfaces with search, filter, and pagination for large datasets. Collaborated with cross-functional teams to deliver features on time using Agile practices. Optimized API-driven rendering to improve performance and load speed.</p>
-                            </div>
-                        </article>
-
-                        <article class="timeline-item">
-                            <div class="timeline-content">
-                                <div class="timeline-date">2022 - December 2026</div>
-                                <h3 class="timeline-title">Computer Science Student</h3>
-                                <div class="timeline-company">Pan-Atlantic University</div>
-                                <p class="timeline-description">Maintaining a First-Class GPA (4.73/5.0) while specializing in data structures, algorithms, and full-stack development. Active in tech communities and leadership roles including collaboration with ICT team on AI projects.</p>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Certifications Section -->
-        <section id="certifications">
-            <div class="container">
-                <div class="fade-in">
-                    <h2 class="section-title">Certifications</h2>
-                    <p class="section-subtitle">Continuous learning in AI tooling and modern development workflows</p>
-
-                    <div class="stats">
-                        <div class="stat">
-                            <a href="https://verify.skilljar.com/c/rhm4c9giv8ug" target="_blank" rel="noopener noreferrer" class="stat-number">Claude Code in Action</a>
-                            <div class="stat-label">Anthropic</div>
-                            <div class="stat-label">April 2026</div>
-                            <p class="stat-label">Verified practitioner in configuring, customising, securing, and automating Claude Code in real development workflows — from local dev environments to CI/CD pipelines.</p>
-                        </div>
-                        <div class="stat">
-                            <a href="https://verify.skilljar.com/c/96dg64g9a38r" target="_blank" rel="noopener noreferrer" class="stat-number">Introduction to Agent Skills</a>
-                            <div class="stat-label">Anthropic</div>
-                            <div class="stat-label">March 2026</div>
-                            <p class="stat-label">Completed Anthropic's official course on building and using agent skills within Claude Code workflows.</p>
-                        </div>
-                        <div class="stat">
-                            <a href="https://verify.skilljar.com/c/qot85jvb5tgh" target="_blank" rel="noopener noreferrer" class="stat-number">Introduction to Model Context Protocol</a>
-                            <div class="stat-label">Anthropic</div>
-                            <div class="stat-label">April 2026</div>
-                            <p class="stat-label">Completed Anthropic's official course on the Model Context Protocol — building MCP servers, integrating tools and resources, and connecting external services to Claude.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact">
-            <div class="container">
-                <div class="fade-in">
-                    <h2 class="section-title">Let's Build Something Amazing</h2>
-                    <p class="section-subtitle">Ready to collaborate? Let's connect and create solutions that matter.</p>
-
-                    <form class="contact-form">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-
-                        <button type="button" onclick="sendMessage()" class="cta-button cta-button-full">Send Message</button>
-                        <p class="contact-email">
-                            Or email me directly at <a href="mailto:aladenusiadeleke@gmail.com">aladenusiadeleke@gmail.com</a>
-                        </p>
-                    </form>
-
-                    <div class="social-links">
-                        <a href="mailto:aladenusiadeleke@gmail.com" class="social-link" title="Email" aria-label="Send email">
-                            <span>Email</span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/adeleke-aladenusi-1a1350337/" class="social-link" title="LinkedIn" aria-label="Visit LinkedIn profile" target="_blank" rel="noopener noreferrer">
-                            <span>in</span>
-                        </a>
-                        <a href="https://github.com/AdelekeAP" class="social-link" title="GitHub" aria-label="Visit GitHub profile" target="_blank" rel="noopener noreferrer">
-                            <span>GitHub</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Paul Adeleke Aladenusi. All rights reserved.</p>
+    <a class="project-item reveal" data-img="assets/images/echomind/Screenshot%202025-12-17%20at%2019.10.48.png" href="project-echomind.html">
+      <div class="project-num">_02</div>
+      <div class="project-info">
+        <div class="project-title">EchoMind <span class="project-badge">🏆 Hackathon Winner</span></div>
+        <div class="project-sub">Voice-Powered Healthcare AI — built in 24h at TIC Hackathon 2.0</div>
+        <div class="project-tags">
+          <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">OpenAI</span><span class="tag">RAG</span>
         </div>
-    </footer>
+      </div>
+      <div class="project-arrow" aria-hidden="true">↗</div>
+    </a>
 
-    <!-- External JavaScript -->
-    <script src="js/main.js"></script>
+    <a class="project-item reveal" data-img="assets/images/projects/uniOrderingimg.png" href="https://uniordering.com" target="_blank" rel="noopener">
+      <div class="project-num">_03</div>
+      <div class="project-info">
+        <div class="project-title">Uni Ordering</div>
+        <div class="project-sub">Campus food-ordering platform serving 1,000+ students, 30–40 daily orders</div>
+        <div class="project-tags">
+          <span class="tag">HTML5</span><span class="tag">Tailwind CSS</span><span class="tag">JavaScript</span>
+        </div>
+      </div>
+      <div class="project-arrow" aria-hidden="true">↗</div>
+    </a>
+
+    <div class="project-item project-item--static reveal" data-img="assets/images/projects/echoPayimg.png">
+      <div class="project-num">_04</div>
+      <div class="project-info">
+        <div class="project-title">EchoPay <span class="project-badge">🏆 Hackathon Winner</span></div>
+        <div class="project-sub">Intelligent Banking Platform — AI-enhanced fintech, built in 24h</div>
+        <div class="project-tags">
+          <span class="tag">Python</span><span class="tag">React</span><span class="tag">AI/ML</span><span class="tag">Fintech</span>
+        </div>
+      </div>
+      <div class="project-arrow" aria-hidden="true"></div>
+    </div>
+
+    <div class="project-item project-item--static reveal" data-img="assets/images/projects/pauknowledgebaseimg.png">
+      <div class="project-num">_05</div>
+      <div class="project-info">
+        <div class="project-title">PAU Knowledge Assistant</div>
+        <div class="project-sub">AI assistant for 700+ students &amp; staff — Microsoft Copilot Studio, policy &amp; HR access</div>
+        <div class="project-tags">
+          <span class="tag">Microsoft Copilot</span><span class="tag">Markdown</span><span class="tag">AI Integration</span>
+        </div>
+      </div>
+      <div class="project-arrow" aria-hidden="true"></div>
+    </div>
+
+    <div class="project-item project-item--static reveal" data-img="assets/images/projects/eagle-placeholder.svg">
+      <div class="project-num">_06</div>
+      <div class="project-info">
+        <div class="project-title">Eagle <span class="project-badge">🔒 Private Client</span></div>
+        <div class="project-sub">Private banking platform — full-stack production system built for a Nigerian financial institution</div>
+        <div class="project-tags">
+          <span class="tag">Django</span><span class="tag">DRF</span><span class="tag">React</span><span class="tag">React Native</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span>
+        </div>
+      </div>
+      <div class="project-arrow" aria-hidden="true"></div>
+    </div>
+
+  </div>
+
+  <!-- Floating hover preview -->
+  <div class="project-preview" id="project-preview" aria-hidden="true">
+    <img id="preview-img" src="" alt="" loading="lazy" decoding="async">
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label reveal">// 04 — journey</div>
+  <h2 class="section-title reveal">Experience</h2>
+  <div class="timeline">
+    <div class="tl-item current reveal">
+      <div class="tl-date">Dec 2025 — Present</div>
+      <div class="tl-role">Senior Full-Stack &amp; Mobile Developer</div>
+      <div class="tl-company">Benmore Technologies (Contract)</div>
+      <div class="tl-desc">Own end-to-end development across four production products. Django/DRF + React + React Native. Stripe, Plaid, Clerk integrations. CI/CD with GitHub Actions, Vercel, Sentry. 649 tests at 81% coverage.</div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-date">Jul 2025 — Sep 2025</div>
+      <div class="tl-role">Risk Consulting Intern, Digital Risk</div>
+      <div class="tl-company">Ernst &amp; Young (EY)</div>
+      <div class="tl-desc">ELC reviews for energy &amp; financial clients. IT control testing across change, access, and backup domains. Findings adopted in client compliance evaluations.</div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-date">Jan 2025 — Present</div>
+      <div class="tl-role">Co-Founder &amp; Frontend Developer</div>
+      <div class="tl-company">Uni Ordering (Startup)</div>
+      <div class="tl-desc">Built campus food-ordering platform serving 1,000+ students, handling 30–40 daily orders. Led frontend development, operations, and product design.</div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-date">Jul 2024 — Sep 2024</div>
+      <div class="tl-role">Frontend Development Intern</div>
+      <div class="tl-company">Unyte Africa</div>
+      <div class="tl-desc">React interfaces with search, filter, pagination for large datasets. Agile delivery. API-driven rendering optimization.</div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-date">2022 — 2026</div>
+      <div class="tl-role">B.Sc. Computer Science</div>
+      <div class="tl-company">Pan-Atlantic University</div>
+      <div class="tl-desc">Graduated First-Class (4.75/5.0 GPA). Data structures, algorithms, full-stack development. ICT team AI project collaboration.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label reveal">// 05 — learning</div>
+  <h2 class="section-title reveal">Certifications</h2>
+  <div class="cert-grid stagger">
+    <a href="https://verify.skilljar.com/c/rhm4c9giv8ug" target="_blank" rel="noopener" class="cert-card reveal">
+      <div class="cert-issuer">Anthropic</div>
+      <div class="cert-title">Claude Code in Action</div>
+      <div class="cert-date">April 2026</div>
+      <div class="cert-link" aria-hidden="true">↗</div>
+    </a>
+    <a href="https://verify.skilljar.com/c/96dg64g9a38r" target="_blank" rel="noopener" class="cert-card reveal">
+      <div class="cert-issuer">Anthropic</div>
+      <div class="cert-title">Introduction to Agent Skills</div>
+      <div class="cert-date">March 2026</div>
+      <div class="cert-link" aria-hidden="true">↗</div>
+    </a>
+    <a href="https://verify.skilljar.com/c/qot85jvb5tgh" target="_blank" rel="noopener" class="cert-card reveal">
+      <div class="cert-issuer">Anthropic</div>
+      <div class="cert-title">Introduction to Model Context Protocol</div>
+      <div class="cert-date">April 2026</div>
+      <div class="cert-link" aria-hidden="true">↗</div>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label reveal" style="text-align:center;margin-bottom:32px">// 06 — contact</div>
+  <div class="contact-big reveal">Let's Build<br><em>Something</em><br>Amazing</div>
+  <a href="mailto:aladenusiadeleke@gmail.com" class="btn-primary contact-email reveal">aladenusiadeleke@gmail.com →</a>
+  <div class="contact-links">
+    <a href="https://www.linkedin.com/in/adeleke-aladenusi-1a1350337/" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
+    <a href="https://github.com/AdelekeAP" target="_blank" rel="noopener" class="contact-link">GitHub</a>
+    <a href="mailto:aladenusiadeleke@gmail.com?subject=Resume%20Request" class="contact-link">Request Resume</a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Paul Adeleke Aladenusi</span>
+  <span class="footer-tag">Built with precision.</span>
+</footer>
+
+<script src="js/main.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,12 @@
+# Reference / handoff material — not part of the live site
+design_handoff_portfolio/
+Leke Portfolio (standalone).html
+
+# Source docs & planning notes
+*.docx
+*.pdf
+DEPLOYMENT_GUIDE.md
+NEXT_STEPS.md
+PRE_DEPLOYMENT_TEST_RESULTS.md
+PROJECT_PORTFOLIO.md
+SPECIFICATIONS.md

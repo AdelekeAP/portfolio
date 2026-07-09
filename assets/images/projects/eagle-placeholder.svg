@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="280" viewBox="0 0 420 280" role="img" aria-label="Eagle — private banking platform, screenshot coming soon">
+  <rect width="420" height="280" fill="#151515"/>
+  <rect x="0.5" y="0.5" width="419" height="279" fill="none" stroke="rgba(255,255,255,0.07)"/>
+  <!-- top accent hairline -->
+  <rect x="0" y="0" width="420" height="1.5" fill="#60a5fa" opacity="0.6"/>
+  <!-- lock glyph -->
+  <g transform="translate(30,30)" fill="none" stroke="#60a5fa" stroke-width="2">
+    <rect x="0" y="9" width="22" height="16" rx="2"/>
+    <path d="M4 9 V6 a7 7 0 0 1 14 0 V9"/>
+  </g>
+  <text x="30" y="150" font-family="'Arial Black', Arial, sans-serif" font-size="72" font-weight="800" letter-spacing="-2" fill="#60a5fa">Eagle</text>
+  <text x="30" y="192" font-family="'Courier New', monospace" font-size="13" fill="#8a8a8a">Django · DRF · React · React Native · PostgreSQL · Docker</text>
+  <text x="30" y="248" font-family="'Courier New', monospace" font-size="12" fill="#555" letter-spacing="0.5">// screenshot coming soon</text>
+</svg>
