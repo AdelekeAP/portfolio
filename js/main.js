@@ -81,24 +81,25 @@ function positionPreview() {
 function hidePreview() {
   previewToken++;                    // cancel any in-flight load's reveal
   preview.classList.remove('active');
-  previewImg.onload = null;
-  previewImg.onerror = null;
   previewImg.removeAttribute('src'); // clear immediately — no stale image left visible
 }
 
 function showPreview(src) {
   const token = ++previewToken;
   preview.classList.remove('active'); // stay hidden until the NEW image is ready
-  const reveal = () => {
-    if (token !== previewToken) return; // a newer row (or a leave) took over
+
+  // Preload into a detached Image so the load handler is attached BEFORE src is set —
+  // this can never miss the event (the failure mode of hooking a shared, possibly
+  // already-complete <img>). Only the current request (matching token) reveals.
+  const loader = new Image();
+  loader.onload = () => {
+    if (token !== previewToken) return; // a newer row — or a mouseleave — superseded us
+    previewImg.src = src;               // swap the visible image only once fully loaded
     preview.classList.add('active');
     positionPreview();
   };
-  previewImg.onload = reveal;
-  previewImg.onerror = () => { if (token === previewToken) hidePreview(); };
-  previewImg.src = src;
-  // cached images may already be decoded — no load event will fire, so reveal now
-  if (previewImg.complete && previewImg.naturalWidth > 0) reveal();
+  loader.onerror = () => { /* broken path: fail silently, leave preview hidden */ };
+  loader.src = src;
 }
 
 document.querySelectorAll('.project-item').forEach(item => {
