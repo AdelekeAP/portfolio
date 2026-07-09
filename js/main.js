@@ -136,6 +136,39 @@ document.querySelectorAll('.project-item[data-img]').forEach(item => {
   preloadedImages.push(pre);
 });
 
+/* ─── EMAIL LINKS: copy-to-clipboard + toast ───────────────────────────── */
+// Every mailto link keeps its href (opens a mail client when one is configured),
+// and additionally copies the address + shows a confirmation toast — so clicking
+// always does something visible even with no default mail app.
+(function () {
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
+  document.body.appendChild(toast);
+
+  let toastTimer;
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+
+  document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
+    a.addEventListener('click', () => {
+      const email = a.getAttribute('href').replace(/^mailto:/, '').split('?')[0];
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(
+          () => showToast('Email copied!'),
+          () => {} // clipboard blocked — the mailto href still handles it
+        );
+      }
+      // no preventDefault: mailto still opens a mail client if one is registered
+    });
+  });
+})();
+
 /* ─── 3D SKILLS GLOBE ──────────────────────────────────────────────────── */
 (function () {
   const canvas = document.getElementById('globe-canvas');
