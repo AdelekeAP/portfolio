@@ -63,6 +63,7 @@ if (!prefersReducedMotion) {
 const preview = document.getElementById('project-preview');
 const previewImg = document.getElementById('preview-img');
 let mouseX = 0, mouseY = 0;
+let previewToken = 0; // bumped on every enter/leave to invalidate stale loads
 
 document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
 
@@ -77,15 +78,36 @@ function positionPreview() {
   preview.style.top = y + 'px';
 }
 
+function hidePreview() {
+  previewToken++;                    // cancel any in-flight load's reveal
+  preview.classList.remove('active');
+  previewImg.onload = null;
+  previewImg.onerror = null;
+  previewImg.removeAttribute('src'); // clear immediately — no stale image left visible
+}
+
+function showPreview(src) {
+  const token = ++previewToken;
+  preview.classList.remove('active'); // stay hidden until the NEW image is ready
+  const reveal = () => {
+    if (token !== previewToken) return; // a newer row (or a leave) took over
+    preview.classList.add('active');
+    positionPreview();
+  };
+  previewImg.onload = reveal;
+  previewImg.onerror = () => { if (token === previewToken) hidePreview(); };
+  previewImg.src = src;
+  // cached images may already be decoded — no load event will fire, so reveal now
+  if (previewImg.complete && previewImg.naturalWidth > 0) reveal();
+}
+
 document.querySelectorAll('.project-item').forEach(item => {
   item.addEventListener('mouseenter', () => {
     const img = item.dataset.img;
-    if (!img) { preview.classList.remove('active'); return; }
-    previewImg.src = img;
-    preview.classList.add('active');
-    positionPreview();
+    if (!img) { hidePreview(); return; }
+    showPreview(img);
   });
-  item.addEventListener('mouseleave', () => preview.classList.remove('active'));
+  item.addEventListener('mouseleave', hidePreview);
   item.addEventListener('mousemove', positionPreview);
 });
 
