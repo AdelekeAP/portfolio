@@ -77,10 +77,12 @@ nav.scrolled {
   position: relative;
   overflow: hidden;
 }
+/* Hero entrance animations are held until fonts load (.fonts-ready, set in main.js)
+   so the name never appears in the fallback font — see the .fonts-ready block below. */
 .hero-eyebrow {
   font-family: var(--font-mono); font-size: 13px; color: var(--accent);
   letter-spacing: 0.12em; margin-bottom: 24px;
-  opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
+  opacity: 0; /* revealed once fonts are ready */
 }
 .hero-name { line-height: 0.88; margin-bottom: 40px; }
 .hero-name .line {
@@ -90,14 +92,12 @@ nav.scrolled {
   display: block; overflow: hidden; white-space: nowrap;
 }
 .hero-name .line span {
-  display: block; transform: translateY(100%);
-  animation: slideUp 0.8s cubic-bezier(0.16,1,0.3,1) forwards;
+  display: block; transform: translateY(100%); /* held below the mask until fonts ready */
 }
-.hero-name .line:nth-child(1) span { animation-delay: 0.3s; }
-.hero-name .line:nth-child(2) span { animation-delay: 0.45s; color: rgba(239,239,239,0.35); }
+.hero-name .line:nth-child(2) span { color: rgba(239,239,239,0.35); }
 .hero-bottom {
   display: flex; align-items: flex-end; justify-content: space-between;
-  gap: 40px; opacity: 0; animation: fadeUp 0.6s 0.8s forwards;
+  gap: 40px; opacity: 0; /* revealed once fonts are ready */
 }
 .hero-role { font-size: clamp(15px,1.5vw,20px); color: var(--muted); max-width: 520px; }
 .hero-role strong { color: var(--text); }
@@ -119,9 +119,17 @@ nav.scrolled {
 .hero-scroll {
   position: absolute; right: 64px; bottom: 72px;
   display: flex; flex-direction: column; align-items: center; gap: 12px;
-  opacity: 0; animation: fadeIn 1s 1.2s forwards;
+  opacity: 0; /* revealed once fonts are ready */
 }
 .hero-scroll span { font-family: var(--font-mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em; writing-mode: vertical-rl; }
+
+/* Hero entrance — triggered only after fonts load (prevents flash of fallback font) */
+.fonts-ready .hero-eyebrow { animation: fadeUp 0.6s 0.2s forwards; }
+.fonts-ready .hero-name .line span { animation: slideUp 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
+.fonts-ready .hero-name .line:nth-child(1) span { animation-delay: 0.3s; }
+.fonts-ready .hero-name .line:nth-child(2) span { animation-delay: 0.45s; }
+.fonts-ready .hero-bottom { animation: fadeUp 0.6s 0.8s forwards; }
+.fonts-ready .hero-scroll { animation: fadeIn 1s 1.2s forwards; }
 .scroll-line { width: 1px; height: 60px; background: linear-gradient(to bottom, var(--accent), transparent); }
 
 /* ── SECTION SHARED ──────────────────────────────────────────────────────── */

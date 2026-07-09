@@ -29,9 +29,22 @@ function fitHeroName() {
   }
 }
 window.addEventListener('resize', fitHeroName);
-window.addEventListener('load', fitHeroName);
-fitHeroName();
-if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitHeroName);
+fitHeroName(); // initial measure (may use fallback metrics; re-measured once fonts load)
+
+// Gate the hero entrance on fonts being ready so the name never flashes in the
+// fallback font (FOUT). The hero text is held at opacity:0 / below its mask by CSS
+// until .fonts-ready is set, then the slide-up/fade animations run — measured with
+// the real Syne metrics.
+function revealHero() {
+  fitHeroName();
+  document.documentElement.classList.add('fonts-ready');
+}
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(revealHero);
+  setTimeout(revealHero, 2000); // fallback: reveal anyway if font loading stalls
+} else {
+  revealHero(); // no Font Loading API — reveal immediately
+}
 
 /* ─── SCROLL REVEAL ────────────────────────────────────────────────────── */
 const observer = new IntersectionObserver(entries => {
