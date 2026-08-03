@@ -184,23 +184,50 @@ document.querySelectorAll('.project-item[data-img]').forEach(item => {
   ];
 
   let W, H, radius, cx, cy, dpr;
+  let measured = false;
   let rotX = 0.3, rotY = 0, velX = 0, velY = 0.003;
   let dragging = false, lastMX = 0, lastMY = 0;
   const baseVelY = prefersReducedMotion ? 0 : 0.003;
 
-  function resize() {
+  // Size the *bitmap* only — the element's layout box stays owned by CSS
+  // (.globe-container sets the square, #globe-canvas is 100%/100% of it). The old
+  // code wrote the measured pixel size into inline style.width/height, so a single
+  // bad measurement latched permanently into an oversized element that overflowed
+  // its container. Now every coordinate below is a fraction of the canvas's own
+  // W/H, so placement is resolution-independent: a wrong read can only cost
+  // bitmap resolution for one frame, never geometry.
+  function measure() {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width < 1 || rect.height < 1) return false; // guard zero / pre-layout reads
+
     dpr = Math.min(window.devicePixelRatio || 1, window.innerWidth <= 600 ? 1.5 : 2);
-    const size = canvas.parentElement.offsetWidth;
-    canvas.width = size * dpr;
-    canvas.height = size * dpr;
-    canvas.style.width = size + 'px';
-    canvas.style.height = size + 'px';
+    const bw = Math.round(rect.width * dpr), bh = Math.round(rect.height * dpr);
+    if (canvas.width !== bw || canvas.height !== bh) {
+      canvas.width = bw;
+      canvas.height = bh;
+    }
     W = canvas.width; H = canvas.height;
     cx = W / 2; cy = H / 2;
-    radius = size * 0.38 * dpr;
+    radius = Math.min(W, H) * 0.38; // min(), so labels can never overflow the short axis
+
+    if (!measured) {
+      measured = true;
+      canvas.classList.add('is-ready'); // fade in — no pre-measurement frame is visible
+    }
+    return true;
   }
-  window.addEventListener('resize', resize);
-  resize();
+
+  // Re-measure whenever the container actually changes size, and again once the
+  // webfonts land (label metrics shift when the real font swaps in). ResizeObserver
+  // also fires once on observe, which covers a first read that came back zero.
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(measure).observe(canvas.parentElement || canvas);
+  }
+  window.addEventListener('resize', measure);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(measure);
+  }
+  measure();
 
   // Fibonacci sphere points
   function fibSphere(n) {
@@ -224,6 +251,7 @@ document.querySelectorAll('.project-item[data-img]').forEach(item => {
   }
 
   function draw() {
+    if (!measured) { requestAnimationFrame(draw); return; } // nothing valid to draw yet
     ctx.clearRect(0, 0, W, H);
     const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
 

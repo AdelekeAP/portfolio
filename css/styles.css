@@ -169,7 +169,16 @@ section { padding: 120px 64px; }
 #skills { text-align: center; }
 #skills .section-label, #skills .section-title { text-align: left; }
 .globe-container { position: relative; margin: 60px auto 0; width: min(600px,90vw); height: min(600px,90vw); }
-#globe-canvas { width: 100%; height: 100%; cursor: grab; }
+/* Held at opacity 0 until main.js takes its first valid measurement (.is-ready),
+   so a mis-measured first frame is never painted. translateZ(0) puts the canvas on
+   its own compositing layer — it goes here rather than on .globe-container, whose
+   transform is already driven by the .reveal scroll animation. */
+#globe-canvas {
+  width: 100%; height: 100%; cursor: grab;
+  opacity: 0; transition: opacity 0.2s ease;
+  transform: translateZ(0);
+}
+#globe-canvas.is-ready { opacity: 1; }
 #globe-canvas:active { cursor: grabbing; }
 
 /* ── PROJECTS ────────────────────────────────────────────────────────────── */
